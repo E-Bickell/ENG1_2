@@ -469,8 +469,12 @@ public class MainGameScreen implements Screen, InputProcessor {
 
         // Ensure the hour cycles through the active hours correctly (8 AM to 12 AM)
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
-            if (dayNum == 7)
+            if (dayNum == 7) {
+                int score = 0;
+                // studying related
+
                 game.screenManager.setScreen(ScreenType.END_SCREEN);
+            }
             resetDay();
         }
     }
