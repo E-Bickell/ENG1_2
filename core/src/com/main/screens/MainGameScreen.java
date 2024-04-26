@@ -18,10 +18,13 @@ import com.main.map.GameMap;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.main.utils.CollisionHandler;
 import com.main.utils.ScreenType;
+import java.util.ArrayList;
 
 /**
- * The MainGameScreen class is responsible for rendering and updating all the game elements
- * including the player, game world, UI, and handling user input during the main gameplay phase.
+ * The MainGameScreen class is responsible for rendering and updating all the
+ * game elements
+ * including the player, game world, UI, and handling user input during the main
+ * gameplay phase.
  */
 public class MainGameScreen implements Screen, InputProcessor {
 
@@ -45,20 +48,24 @@ public class MainGameScreen implements Screen, InputProcessor {
     private float menuButtonY, menuButtonX, menuButtonWidth, menuButtonHeight;
     private float counterBackgroundY, counterBackgroundX, counterBackgroundWidth, counterBackgroundHeight;
     private float popupMenuWidth, popupMenuHeight;
-    private float durationUpButtonX, durationDownButtonX, durationMenuBackgroundX, durationButtonY, durationMenuBackgroundY;
-    private float durationUpButtonWidth, durationDownButtonWidth, durationMenuBackgroundWidth, durationUpButtonHeight, durationDownButtonHeight, durationMenuBackgroundHeight;
+    private float durationUpButtonX, durationDownButtonX, durationMenuBackgroundX, durationButtonY,
+            durationMenuBackgroundY;
+    private float durationUpButtonWidth, durationDownButtonWidth, durationMenuBackgroundWidth, durationUpButtonHeight,
+            durationDownButtonHeight, durationMenuBackgroundHeight;
     private float menuBackButtonWidth, menuBackButtonHeight, activityButtonWidth, activityButtonHeight;
     private float menuBackButtonX, activityButtonX, durationMenuButtonY;
     private float durationTextY, menuTitleY, hoursLabelY;
     private float energyBarY, energyBarX, energyBarWidth, energyBarHeight;
     private String activity, popupMenuType;
-    private int energyCounter, duration, dayNum, recActivity, studyHours, mealCount, currentHour;
+    private int energyCounter, duration, dayNum, currentHour;// recActivity, studyHours, mealCount,
     private float timeElapsed, fadeTime, minShade;
     private boolean fadeOut, lockTime, lockMovement, lockPopup, resetPos, popupVisible, showMenu;
+    private ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
 
     /**
      * Constructs the main game screen with necessary game components.
-     * Initializes game map, player, camera, UI elements, and sets the initial game state.
+     * Initializes game map, player, camera, UI elements, and sets the initial game
+     * state.
      *
      * @param game The main game application instance.
      */
@@ -91,6 +98,9 @@ public class MainGameScreen implements Screen, InputProcessor {
         this.fadeTime = 0;
         this.minShade = 0;
         this.fadeOut = this.lockTime = this.lockMovement = this.lockPopup = this.resetPos = this.popupVisible = this.showMenu = false;
+        this.recActivtities = new ArrayList<String>();
+        this.meals = new ArrayList<String>();
+        this.studyTimes = new ArrayList<String>();
 
         // Setting up the game
         this.camera = new OrthographicCamera();
@@ -110,8 +120,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         this.camera.update();
     }
 
-
-    private void calculateDimensions(){
+    private void calculateDimensions() {
         menuButtonWidth = 64 * game.scaleFactorX;
         menuButtonHeight = 64 * game.scaleFactorY;
         energyBarWidth = 200 * game.scaleFactorX;
@@ -135,18 +144,18 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     }
 
-    private void calculatePositions(){
+    private void calculatePositions() {
         menuButtonX = 10 * game.scaleFactorX;
         menuButtonY = game.screenHeight - menuButtonHeight - 10 * game.scaleFactorY;
         energyBarX = 30 * game.scaleFactorX + menuButtonWidth;
         energyBarY = game.screenHeight - energyBarHeight - 10 * game.scaleFactorY;
         counterBackgroundX = game.screenWidth - counterBackgroundWidth;
         counterBackgroundY = game.screenHeight - counterBackgroundHeight;
-        durationMenuBackgroundX = game.screenWidth/2f - durationMenuBackgroundWidth/2f;
-        durationMenuBackgroundY = game.screenHeight/2f - durationMenuBackgroundHeight/2f;
-        durationDownButtonX = game.screenWidth/2f - durationDownButtonWidth/2f - 150 * game.scaleFactorX;
-        durationUpButtonX = game.screenWidth/2f - durationUpButtonWidth/2f + 150 * game.scaleFactorX;
-        durationButtonY = game.screenHeight/2f - durationUpButtonHeight/2f - 60 * game.scaleFactorY;
+        durationMenuBackgroundX = game.screenWidth / 2f - durationMenuBackgroundWidth / 2f;
+        durationMenuBackgroundY = game.screenHeight / 2f - durationMenuBackgroundHeight / 2f;
+        durationDownButtonX = game.screenWidth / 2f - durationDownButtonWidth / 2f - 150 * game.scaleFactorX;
+        durationUpButtonX = game.screenWidth / 2f - durationUpButtonWidth / 2f + 150 * game.scaleFactorX;
+        durationButtonY = game.screenHeight / 2f - durationUpButtonHeight / 2f - 60 * game.scaleFactorY;
         menuBackButtonX = durationDownButtonX;
         activityButtonX = durationUpButtonX + durationUpButtonWidth - activityButtonWidth;
         durationMenuButtonY = durationButtonY - 125 * game.scaleFactorY;
@@ -157,15 +166,16 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
-        if (!lockMovement) player.update(delta);
-        if (!lockTime) updateGameTime(delta); // Update the game clock
+        if (!lockMovement)
+            player.update(delta);
+        if (!lockTime)
+            updateGameTime(delta); // Update the game clock
 
         ScreenUtils.clear(0, 0, 1, 1);
         drawWorldElements(delta);
         drawUIElements();
         drawGameTime(); // Draw current time
     }
-
 
     @Override
     public void show() {
@@ -176,19 +186,27 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Identifies which door, if any, the player is currently touching.
-     * @return The name of the door the player is touching or an empty string if none.
+     * 
+     * @return The name of the door the player is touching or an empty string if
+     *         none.
      */
-    private String getDoorTouching(){
+    private String getDoorTouching() {
         CollisionHandler collisionHandler = player.getCollisionHandler();
-        if (collisionHandler.isTouching("Comp_sci_door", player.getHitBox())) return "Comp_sci_door";
-        if (collisionHandler.isTouching("Piazza_door", player.getHitBox())) return "Piazza_door";
-        if (collisionHandler.isTouching("Gym_door", player.getHitBox())) return "Gym_door";
-        if (collisionHandler.isTouching("Goodricke_door", player.getHitBox())) return "Goodricke_door";
+        if (collisionHandler.isTouching("Comp_sci_door", player.getHitBox()))
+            return "Comp_sci_door";
+        if (collisionHandler.isTouching("Piazza_door", player.getHitBox()))
+            return "Piazza_door";
+        if (collisionHandler.isTouching("Gym_door", player.getHitBox()))
+            return "Gym_door";
+        if (collisionHandler.isTouching("Goodricke_door", player.getHitBox()))
+            return "Goodricke_door";
         return "";
     }
 
     /**
-     * Determines the menu title based on the current activity selected by the player.
+     * Determines the menu title based on the current activity selected by the
+     * player.
+     * 
      * @return The title for the menu based on the current activity.
      */
     private String getMenuTitle() {
@@ -206,6 +224,7 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Retrieves the appropriate button texture based on the current activity.
+     * 
      * @return The texture for the activity button.
      */
     private Texture getActivityButton() {
@@ -222,62 +241,78 @@ public class MainGameScreen implements Screen, InputProcessor {
     }
 
     /**
-     * Checks if the cursor is hovering over a menu option and changes its color accordingly.
+     * Checks if the cursor is hovering over a menu option and changes its color
+     * accordingly.
+     * 
      * @param posX The X position of the menu option.
      * @param posY The Y position of the menu option.
      */
-    private void isHovering(float posX, float posY){
+    private void isHovering(float posX, float posY) {
         int mouseX = Gdx.input.getX();
         int mouseY = game.screenHeight - Gdx.input.getY();
         Vector3 menuOpt = camera.project(new Vector3(posX, posY, 0));
-        if (mouseX >= menuOpt.x && mouseX <= menuOpt.x + popupMenuWidth * zoom && mouseY >= menuOpt.y && mouseY <= menuOpt.y + popupMenuHeight * zoom) {
+        if (mouseX >= menuOpt.x && mouseX <= menuOpt.x + popupMenuWidth * zoom && mouseY >= menuOpt.y
+                && mouseY <= menuOpt.y + popupMenuHeight * zoom) {
             game.batch.setColor(shader);
-        }
-        else {
+        } else {
             game.batch.setColor(Color.WHITE);
         }
     }
 
     /**
-     * Draws a menu option at the specified position with a specified text and shade option.
-     * @param posX The X position of the menu option.
-     * @param posY The Y position of the menu option.
-     * @param text The text to display on the menu option.
+     * Draws a menu option at the specified position with a specified text and shade
+     * option.
+     * 
+     * @param posX        The X position of the menu option.
+     * @param posY        The Y position of the menu option.
+     * @param text        The text to display on the menu option.
      * @param shadeOption Determines the shade of the menu option.
      */
-    private void drawMenuOption(float posX, float posY, String text, int shadeOption){
-        if (shadeOption == 0) isHovering(posX, posY);
-        else if (shadeOption == 1) game.batch.setColor(Color.WHITE);
-        else if (shadeOption == 2) game.batch.setColor(shader);
+    private void drawMenuOption(float posX, float posY, String text, int shadeOption) {
+        if (shadeOption == 0)
+            isHovering(posX, posY);
+        else if (shadeOption == 1)
+            game.batch.setColor(Color.WHITE);
+        else if (shadeOption == 2)
+            game.batch.setColor(shader);
         GlyphLayout layout = new GlyphLayout();
         layout.setText(popupFont, text);
         game.batch.draw(popupMenu, posX, posY, popupMenuWidth, popupMenuHeight);
-        popupFont.draw(game.batch, text, posX + (popupMenuWidth - layout.width)/2, posY + (popupMenuHeight + layout.height)/2f - popupFont.getDescent() - layout.height/4f);
+        popupFont.draw(game.batch, text, posX + (popupMenuWidth - layout.width) / 2,
+                posY + (popupMenuHeight + layout.height) / 2f - popupFont.getDescent() - layout.height / 4f);
         game.batch.setColor(Color.WHITE);
     }
 
     /**
      * Renders the menu for setting the duration of an activity.
      *
-     * This functionality of the popup menu (along with all the other methods that relate to this functionality)
-     * should be segregated into its own class to reduce overheads and processing delay.
+     * This functionality of the popup menu (along with all the other methods that
+     * relate to this functionality)
+     * should be segregated into its own class to reduce overheads and processing
+     * delay.
      */
-    private void drawDurationMenu(){
+    private void drawDurationMenu() {
         game.batch.begin();
         Texture activityButton;
         String title;
         activityButton = getActivityButton();
         title = getMenuTitle();
 
-        game.batch.draw(durationMenuBackground, durationMenuBackgroundX, durationMenuBackgroundY, durationMenuBackgroundWidth, durationMenuBackgroundHeight);
-        game.batch.draw(menuBackButton, menuBackButtonX, durationMenuButtonY, menuBackButtonWidth, menuBackButtonHeight);
-        game.batch.draw(activityButton, activityButtonX, durationMenuButtonY, activityButtonWidth, activityButtonHeight);
+        game.batch.draw(durationMenuBackground, durationMenuBackgroundX, durationMenuBackgroundY,
+                durationMenuBackgroundWidth, durationMenuBackgroundHeight);
+        game.batch.draw(menuBackButton, menuBackButtonX, durationMenuButtonY, menuBackButtonWidth,
+                menuBackButtonHeight);
+        game.batch.draw(activityButton, activityButtonX, durationMenuButtonY, activityButtonWidth,
+                activityButtonHeight);
         durationFont.draw(game.batch, title, 0, menuTitleY, game.screenWidth, Align.center, false);
 
         if (!activity.equals("sleep")) {
-            game.batch.draw(durationDownButton, durationDownButtonX, durationButtonY, durationDownButtonWidth, durationDownButtonHeight);
-            game.batch.draw(durationUpButton, durationUpButtonX, durationButtonY, durationUpButtonWidth, durationUpButtonHeight);
-            durationFont.draw(game.batch, Integer.toString(duration), 0, durationTextY, game.screenWidth, Align.center, false);
+            game.batch.draw(durationDownButton, durationDownButtonX, durationButtonY, durationDownButtonWidth,
+                    durationDownButtonHeight);
+            game.batch.draw(durationUpButton, durationUpButtonX, durationButtonY, durationUpButtonWidth,
+                    durationUpButtonHeight);
+            durationFont.draw(game.batch, Integer.toString(duration), 0, durationTextY, game.screenWidth, Align.center,
+                    false);
             durationFont.draw(game.batch, "Hours", 0, hoursLabelY, game.screenWidth, Align.center, false);
         }
 
@@ -287,7 +322,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     /**
      * Draws the popup menu for interaction with various doors.
      */
-    private void drawPopUpMenu(){
+    private void drawPopUpMenu() {
         popupMenuType = getDoorTouching();
         switch (popupMenuType) {
             case "Comp_sci_door":
@@ -322,9 +357,10 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Draws a shade overlay on the screen with a specified alpha transparency.
+     * 
      * @param alpha The transparency level of the overlay.
      */
-    private void drawShadeOverlay(float alpha){
+    private void drawShadeOverlay(float alpha) {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -336,33 +372,38 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Initiates the fade out process and optionally resets the player's position.
+     * 
      * @param resetPos A boolean indicating whether to reset the player's position.
      */
-    private void executeFadeOut(boolean resetPos){
-        if (fadeOut) return;
+    private void executeFadeOut(boolean resetPos) {
+        if (fadeOut)
+            return;
         fadeOut = true;
         lockMovement = true;
         lockTime = true;
         lockPopup = true;
         showMenu = false;
         this.resetPos = resetPos;
-        minShade = timeElapsed/secondsPerGameHour > 11 ? (timeElapsed - 11 * secondsPerGameHour)/(gameDayLengthInSeconds - 11 * secondsPerGameHour) : 0;
+        minShade = timeElapsed / secondsPerGameHour > 11
+                ? (timeElapsed - 11 * secondsPerGameHour) / (gameDayLengthInSeconds - 11 * secondsPerGameHour)
+                : 0;
     }
 
     /**
      * Manages the stepwise execution of the fade-out effect.
+     * 
      * @param delta The time elapsed since the last frame.
      */
-    private void fadeOutStep(float delta){
-        if (fadeOut){
-            if (fadeTime == 0) fadeTime = minShade;
+    private void fadeOutStep(float delta) {
+        if (fadeOut) {
+            if (fadeTime == 0)
+                fadeTime = minShade;
             if (fadeTime <= 1) {
                 fadeTime += delta;
                 drawShadeOverlay(fadeTime);
-            }
-            else{
+            } else {
                 if (resetPos) {
-                    player.setPos( 1389, 635);
+                    player.setPos(1389, 635);
                     player.setDirection('D');
                 }
                 fadeTime = 0;
@@ -377,49 +418,59 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Renders the game world elements including the map and player.
+     * 
      * @param delta The time elapsed since the last frame.
      */
-    private void drawWorldElements(float delta){
+    private void drawWorldElements(float delta) {
         gameMap.update(delta);
         gameMap.render();
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         game.batch.draw(player.getCurrentFrame(), player.worldX, player.worldY, Player.spriteX, Player.spriteY);
-        if (!lockPopup) drawPopUpMenu();
+        if (!lockPopup)
+            drawPopUpMenu();
         game.batch.end();
-        if (!fadeOut && timeElapsed/secondsPerGameHour > 11) drawShadeOverlay((timeElapsed - 11 * secondsPerGameHour)/(gameDayLengthInSeconds - 11 * secondsPerGameHour));
+        if (!fadeOut && timeElapsed / secondsPerGameHour > 11)
+            drawShadeOverlay(
+                    (timeElapsed - 11 * secondsPerGameHour) / (gameDayLengthInSeconds - 11 * secondsPerGameHour));
         fadeOutStep(delta);
     }
 
     /**
      * Renders the UI elements of the game.
      */
-    private void drawUIElements(){
-        String counterString = String.format("Recreation Activities done: " + recActivity + "\nStudy hours: " + studyHours + "\nMeals Eaten: " + mealCount, dayNum, timeElapsed );
+    private void drawUIElements() {
+        String counterString = String.format("Recreation Activities done: " + recActivtities.size() + "\nStudy hours: "
+                + studyTime.size() + "\nMeals Eaten: " + meals.size(), dayNum, timeElapsed);
         game.batch.setProjectionMatrix(game.defaultCamera.combined);
-        if (showMenu) drawDurationMenu();
+        if (showMenu)
+            drawDurationMenu();
         game.batch.begin();
         game.batch.draw(menuButton, menuButtonX, menuButtonY, menuButtonWidth, menuButtonHeight);
         game.batch.draw(energyBar, energyBarX, energyBarY, energyBarWidth, energyBarHeight);
-        game.batch.draw(counterBackground, counterBackgroundX, counterBackgroundY, counterBackgroundWidth, counterBackgroundHeight);
-        font.draw(game.batch, counterString, game.screenWidth - 320 * game.scaleFactorX, game.screenHeight - 40 * game.scaleFactorY);
+        game.batch.draw(counterBackground, counterBackgroundX, counterBackgroundY, counterBackgroundWidth,
+                counterBackgroundHeight);
+        font.draw(game.batch, counterString, game.screenWidth - 320 * game.scaleFactorX,
+                game.screenHeight - 40 * game.scaleFactorY);
         game.batch.end();
     }
 
     /**
      * Updates the game time and handles the transition from day to night.
+     * 
      * @param delta The time elapsed since the last frame.
      */
     private void updateGameTime(float delta) {
         timeElapsed += delta;
 
         // Calculate the current hour in game time
-        int hoursPassed = (int)(timeElapsed / secondsPerGameHour);
+        int hoursPassed = (int) (timeElapsed / secondsPerGameHour);
         currentHour = 8 + hoursPassed; // Starts at 08:00 AM
 
         // Ensure the hour cycles through the active hours correctly (8 AM to 12 AM)
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
-            if (dayNum == 7) game.screenManager.setScreen(ScreenType.END_SCREEN);
+            if (dayNum == 7)
+                game.screenManager.setScreen(ScreenType.END_SCREEN);
             resetDay();
         }
     }
@@ -427,13 +478,14 @@ public class MainGameScreen implements Screen, InputProcessor {
     /**
      * Resets the game day, including resetting time and increasing the day counter.
      */
-    private void resetDay(){
+    private void resetDay() {
         executeFadeOut(true);
         currentHour = 8;
         dayNum++;
         timeElapsed = 0;
         energyCounter += 4;
-        if (energyCounter > 10) energyCounter = 10;
+        if (energyCounter > 10)
+            energyCounter = 10;
         energyBar.dispose();
         energyBar = setEnergyBar();
     }
@@ -443,14 +495,16 @@ public class MainGameScreen implements Screen, InputProcessor {
      */
     private void drawGameTime() {
         // Adjust the format if you want to display minutes or seconds
-        String timeString = String.format("Day: %d       Time: %02d:00", dayNum, currentHour%24);
+        String timeString = String.format("Day: %d       Time: %02d:00", dayNum, currentHour % 24);
         game.batch.begin();
-        font.draw(game.batch, timeString, game.screenWidth - 320 * game.scaleFactorX, game.screenHeight - 15 * game.scaleFactorY);
+        font.draw(game.batch, timeString, game.screenWidth - 320 * game.scaleFactorX,
+                game.screenHeight - 15 * game.scaleFactorY);
         game.batch.end();
     }
 
     /**
      * Sets the texture for the energy bar based on the current energy level.
+     * 
      * @return The texture of the current energy bar.
      */
     public Texture setEnergyBar() {
@@ -462,42 +516,56 @@ public class MainGameScreen implements Screen, InputProcessor {
     }
 
     /**
-     * Handles touch input from the user, managing interactions with UI elements and game objects.
+     * Handles touch input from the user, managing interactions with UI elements and
+     * game objects.
      *
-     * @param touchX The x-coordinate of the touch.
-     * @param touchY The y-coordinate of the touch.
+     * @param touchX  The x-coordinate of the touch.
+     * @param touchY  The y-coordinate of the touch.
      * @param pointer The pointer for the event.
-     * @param button The button that was pressed.
+     * @param button  The button that was pressed.
      * @return true if the input was processed, false otherwise.
      */
     @Override
-    public boolean touchDown(int touchX, int touchY, int pointer, int button){
+    public boolean touchDown(int touchX, int touchY, int pointer, int button) {
         touchY = game.screenHeight - touchY;
 
-        if (touchX >= menuButtonX && touchX <= menuButtonX + menuButtonWidth && touchY >= menuButtonY && touchY <= menuButtonY + menuButtonHeight) {
+        if (touchX >= menuButtonX && touchX <= menuButtonX + menuButtonWidth && touchY >= menuButtonY
+                && touchY <= menuButtonY + menuButtonHeight) {
             game.gameData.buttonClickedSoundActivate();
             game.screenManager.setScreen(ScreenType.MAIN_MENU);
-        }
-        else if (showMenu){
-            switch (activity){
+        } else if (showMenu) {
+            switch (activity) {
                 case "study":
-                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration < 4) duration++;
-                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        if (duration < 6)
+                            duration = duration + 3;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration > 1) duration--;
-                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        if (duration > 3)
+                            duration = duration - 3;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
                         duration = 1;
-                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
-                        studyHours += duration;
-                        if (energyCounter > (duration+1)/2) energyCounter -= (duration+1)/2;
+                        ArrayList<String> studied = new ArrayList<String>();
+                        studied.add(String.valueOf(dayNum));
+                        studied.add(popupMenuType);
+                        studyTimes.add(studied);
+                        if (duration == 6) {
+                            studyTimes.add(studied);
+                        }
+                        if (energyCounter > (duration + 1) / 2)
+                            energyCounter -= (duration + 1) / 2;
                         energyBar.dispose();
                         energyBar = setEnergyBar();
                         timeElapsed += duration * secondsPerGameHour;
@@ -506,24 +574,36 @@ public class MainGameScreen implements Screen, InputProcessor {
                     break;
 
                 case "exercise":
-                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration < 4) duration++;
-                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        if (duration < 4)
+                            duration = duration + 2;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration > 1) duration--;
-                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        if (duration > 2)
+                            duration = duration - 2;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
                         duration = 1;
-                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         if (energyCounter >= duration) {
                             executeFadeOut(false);
                             showMenu = false;
                             lockMovement = fadeOut;
-                            recActivity++;
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
                             energyCounter -= duration;
                             energyBar.dispose();
                             energyBar = setEnergyBar();
@@ -534,18 +614,24 @@ public class MainGameScreen implements Screen, InputProcessor {
                     break;
 
                 case "sleep":
-                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration < 10) duration++;
-                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        if (duration < 10)
+                            duration++;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
-                        if (duration > 1) duration--;
-                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        if (duration > 1)
+                            duration--;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
                         duration = 1;
-                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
@@ -554,52 +640,59 @@ public class MainGameScreen implements Screen, InputProcessor {
                     }
                     break;
             }
-        }
-        else if (popupVisible){
+        } else if (popupVisible) {
             Vector3 studyOpt = camera.project(new Vector3(player.worldX + 30, player.worldY + 20, 0));
             Vector3 eatOpt = camera.project(new Vector3(player.worldX + 30, player.worldY + 35, 0));
             switch (popupMenuType) {
                 case "Comp_sci_door":
-                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = true;
                         lockMovement = true;
                         activity = "study";
-                        duration = 1;
+                        duration = 3;
                     }
                     break;
 
                 case "Piazza_door":
-                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = true;
                         lockMovement = true;
                         activity = "study";
-                        duration = 1;
-                    }
-                    else if (touchX >= eatOpt.x && touchX <= eatOpt.x + popupMenuWidth * zoom && touchY >= eatOpt.y && touchY <= eatOpt.y + popupMenuHeight * zoom) {
+                        duration = 3;
+                    } else if (touchX >= eatOpt.x && touchX <= eatOpt.x + popupMenuWidth * zoom && touchY >= eatOpt.y
+                            && touchY <= eatOpt.y + popupMenuHeight * zoom) {
                         game.gameData.buttonClickedSoundActivate();
                         game.gameData.eatingSoundActivate();
                         energyCounter += 3;
-                        mealCount++;
-                        if (energyCounter > 10) energyCounter = 10;
+                        ArrayList<String> meal = new ArrayList<String>();
+                        meal.add(String.valueOf(dayNum));
+                        meal.add(popupMenuType);
+                        meals.add(meal);
+                        if (energyCounter > 10)
+                            energyCounter = 10;
                         energyBar.dispose();
                         energyBar = setEnergyBar();
                     }
                     break;
 
                 case "Gym_door":
-                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = true;
                         lockMovement = true;
                         activity = "exercise";
-                        duration = 1;
+                        duration = 2;
                     }
                     break;
 
                 case "Goodricke_door":
-                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = true;
                         lockMovement = true;
