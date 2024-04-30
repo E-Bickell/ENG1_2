@@ -18,9 +18,10 @@ public class EndScreen implements Screen, InputProcessor {
     float buttonX, buttonWidth, buttonHeight;
     float titleY;
     boolean exitFlag;
-    public EndScreen(Main game){
+    public EndScreen(Main game,int score){
         this.game = game;
-        titleText = "The End";
+        titleText = "The End \n Score: "+String.valueOf(score);
+
         loadAssets();
         calculateDimensions();
         calculatePositions();

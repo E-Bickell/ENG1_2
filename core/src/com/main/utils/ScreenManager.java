@@ -103,7 +103,7 @@ public class ScreenManager {
             case MINI_GAME:
                 return new TypingGame(game, (int) args[0]);
             case END_SCREEN:
-                return new EndScreen(game);
+                return new EndScreen(game,(int) args[0]);
         }
         return null;
     }

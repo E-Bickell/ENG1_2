@@ -532,7 +532,7 @@ public class MainGameScreen implements Screen, InputProcessor {
                     score=0;
                 }
 
-                game.screenManager.setScreen(ScreenType.END_SCREEN);
+                game.screenManager.setScreen(ScreenType.END_SCREEN,score);
             }
             resetDay();
         }
