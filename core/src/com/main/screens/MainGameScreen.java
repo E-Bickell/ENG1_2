@@ -494,7 +494,43 @@ public class MainGameScreen implements Screen, InputProcessor {
                     score+=5;
                 }
                 else if(studyTimes.size()>15){score-=15;}
-                else if(studyTIme.size()>10){score-=5;}
+                else if(studyTime.size()>10){score-=5;}
+
+                //eating regularly
+                dayCheck=1;
+                int timeEatenToday=0;
+                for (int i=0;i<meals.size();i++){
+                    if(meals.get(i).get(0)==dayCheck){
+                        timeEatenToday++;
+                    }
+
+                    if (meals.get(i).get(0)>dayCheck){
+                        if (timeEatenToday>2){
+                            score+=3;
+                        }
+                        int difference=meals.get(i).get(0)-dayCheck+1;
+                        score-=3+difference;
+                        dayCheck=meals.get(i).get(0);
+                        timeEatenToday=1;
+                    }
+
+                }
+
+                //recreation score
+                if (recActivtities.size()<11){
+                    score+=recActivtities.size();
+                }
+                else{
+                    score+=10;
+                }
+
+                //neaten score
+                if (score>100){
+                    score=100;
+                }
+                if(score<0){
+                    score=0;
+                }
 
                 game.screenManager.setScreen(ScreenType.END_SCREEN);
             }
