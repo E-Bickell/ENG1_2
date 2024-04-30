@@ -470,8 +470,31 @@ public class MainGameScreen implements Screen, InputProcessor {
         // Ensure the hour cycles through the active hours correctly (8 AM to 12 AM)
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
             if (dayNum == 7) {
+                //recActivtities, studyTimes, meals;
                 int score = 0;
                 // studying related
+                boolean diffLocation=False;
+                string firstLocation=studyTimes.get(0).get(1);
+                int dayCheck=1;
+                for(int i=0;i<studyTimes.size();i++){
+                    score=score+5;
+                    if(firstLocation != studyTimes.get(i).get(1) && !diffLocation){
+                        score+=5;
+                        diffLocation=True;
+                    }
+                    if(studyTimes.get(i).get(0)==dayCheck){
+                        score++;
+                        dayCheck++;
+                    }
+                    else if(studyTimes.get(i).get(0)>dayCheck ){
+                        dayCheck=studyTimes.get(i).get(0);
+                    }
+                }
+                if(studyTimes.size()>7&&studyTimes.size()<11){
+                    score+=5;
+                }
+                else if(studyTimes.size()>15){score-=15;}
+                else if(studyTIme.size()>10){score-=5;}
 
                 game.screenManager.setScreen(ScreenType.END_SCREEN);
             }
