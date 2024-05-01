@@ -98,9 +98,9 @@ public class MainGameScreen implements Screen, InputProcessor {
         this.fadeTime = 0;
         this.minShade = 0;
         this.fadeOut = this.lockTime = this.lockMovement = this.lockPopup = this.resetPos = this.popupVisible = this.showMenu = false;
-        this.recActivtities = new ArrayList<String>();
-        this.meals = new ArrayList<String>();
-        this.studyTimes = new ArrayList<String>();
+        this.recActivtities = new ArrayList<ArrayList<String>>();
+        this.meals = new ArrayList<ArrayList<String>>();
+        this.studyTimes = new ArrayList<ArrayList<String>>();
 
         // Setting up the game
         this.camera = new OrthographicCamera();
@@ -441,7 +441,7 @@ public class MainGameScreen implements Screen, InputProcessor {
      */
     private void drawUIElements() {
         String counterString = String.format("Recreation Activities done: " + recActivtities.size() + "\nStudy hours: "
-                + studyTime.size() + "\nMeals Eaten: " + meals.size(), dayNum, timeElapsed);
+                + studyTimes.size() + "\nMeals Eaten: " + meals.size(), dayNum, timeElapsed);
         game.batch.setProjectionMatrix(game.defaultCamera.combined);
         if (showMenu)
             drawDurationMenu();
@@ -473,44 +473,44 @@ public class MainGameScreen implements Screen, InputProcessor {
                 //recActivtities, studyTimes, meals;
                 int score = 0;
                 // studying related
-                boolean diffLocation=False;
-                string firstLocation=studyTimes.get(0).get(1);
+                boolean diffLocation=false;
+                String firstLocation=studyTimes.get(0).get(1);
                 int dayCheck=1;
                 for(int i=0;i<studyTimes.size();i++){
                     score=score+5;
                     if(firstLocation != studyTimes.get(i).get(1) && !diffLocation){
                         score+=5;
-                        diffLocation=True;
+                        diffLocation=true;
                     }
-                    if(studyTimes.get(i).get(0)==dayCheck){
+                    if(Integer.valueOf(studyTimes.get(i).get(0))==dayCheck){
                         score++;
                         dayCheck++;
                     }
-                    else if(studyTimes.get(i).get(0)>dayCheck ){
-                        dayCheck=studyTimes.get(i).get(0);
+                    else if(Integer.valueOf(studyTimes.get(i).get(0))>dayCheck ){
+                        dayCheck=Integer.valueOf(studyTimes.get(i).get(0));
                     }
                 }
                 if(studyTimes.size()>7&&studyTimes.size()<11){
                     score+=5;
                 }
                 else if(studyTimes.size()>15){score-=15;}
-                else if(studyTime.size()>10){score-=5;}
+                else if(studyTimes.size()>10){score-=5;}
 
                 //eating regularly
                 dayCheck=1;
                 int timeEatenToday=0;
                 for (int i=0;i<meals.size();i++){
-                    if(meals.get(i).get(0)==dayCheck){
+                    if(Integer.valueOf(meals.get(i).get(0))==dayCheck){
                         timeEatenToday++;
                     }
 
-                    if (meals.get(i).get(0)>dayCheck){
+                    if (Integer.valueOf(meals.get(i).get(0))>dayCheck){
                         if (timeEatenToday>2){
                             score+=3;
                         }
-                        int difference=meals.get(i).get(0)-dayCheck+1;
+                        int difference=Integer.valueOf(meals.get(i).get(0))-dayCheck+1;
                         score-=3+difference;
-                        dayCheck=meals.get(i).get(0);
+                        dayCheck=Integer.valueOf(meals.get(i).get(0));
                         timeEatenToday=1;
                     }
 
