@@ -57,7 +57,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     private float durationTextY, menuTitleY, hoursLabelY;
     private float energyBarY, energyBarX, energyBarWidth, energyBarHeight;
     private String activity, popupMenuType;
-    private int energyCounter, duration, dayNum, currentHour;// recActivity, studyHours, mealCount,
+    private int energyCounter, duration, dayNum, currentHour,score;// recActivity, studyHours, mealCount,
     private float timeElapsed, fadeTime, minShade;
     private boolean fadeOut, lockTime, lockMovement, lockPopup, resetPos, popupVisible, showMenu;
     private ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
@@ -471,7 +471,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
             if (dayNum == 7) {
                 //recActivtities, studyTimes, meals;
-                int score = 0;
+                score = 0;
                 // studying related
                 boolean diffLocation=false;
                 String firstLocation=studyTimes.get(0).get(1);
