@@ -1,3 +1,5 @@
+//does not display well, streaks and buttons overlap
+
 package com.main.screens;
 
 import com.badlogic.gdx.Gdx;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.main.Main;
+import java.util.ArrayList;
 
 public class EndScreen implements Screen, InputProcessor {
     Main game;
@@ -18,10 +21,13 @@ public class EndScreen implements Screen, InputProcessor {
     float buttonX, buttonWidth, buttonHeight;
     float titleY;
     boolean exitFlag;
-    public EndScreen(Main game,int score){
+    public EndScreen(Main game,int score,ArrayList<String> streaks){
         this.game = game;
-        titleText = "The End \n Score: "+String.valueOf(score);
-
+        titleText = "The End \n Score: "+String.valueOf(score)+"\n Streaks:";
+    
+        for (int i=0;i<streaks.size();i++){
+            titleText+="\n"+streaks.get(i);
+        }
         loadAssets();
         calculateDimensions();
         calculatePositions();

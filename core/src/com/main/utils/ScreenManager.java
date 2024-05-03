@@ -7,6 +7,7 @@ import com.main.screens.*;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The ScreenManager class manages the game screens, including creation, switching,
@@ -103,7 +104,7 @@ public class ScreenManager {
             case MINI_GAME:
                 return new TypingGame(game, (int) args[0]);
             case END_SCREEN:
-                return new EndScreen(game,(int) args[0]);
+                return new EndScreen(game,(int) args[0],(ArrayList<String>)args[1]);
         }
         return null;
     }

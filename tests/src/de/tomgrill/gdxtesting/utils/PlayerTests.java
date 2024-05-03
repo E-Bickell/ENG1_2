@@ -13,8 +13,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(GdxTestRunner.class)
 public class PlayerTests {
     OrthographicCamera camera = new OrthographicCamera();
-    GameMap gameMap = new GameMap(this.camera); 
-    
-    Player player=  new Player(game,gameMap,camera);
+    //GameMap gameMap = new GameMap(this.camera);    
+   // Player player= new Player(game,gameMap,camera);
     
 }

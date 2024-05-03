@@ -13,7 +13,11 @@ import static org.junit.Assert.assertEquals;
 @RunWith(GdxTestRunner.class)
 
 public class ScoringTests {
-    MainGameScreen gameScreen=new MainGameScreen(game);
-    
+    // MainGameScreen gameScreen=new MainGameScreen(game);
+    // @Test
+    // public void testNoActions(){
+    //     game.dayNum=7;
+    //     assertEquals(game.score,0);
+    }
 
 }

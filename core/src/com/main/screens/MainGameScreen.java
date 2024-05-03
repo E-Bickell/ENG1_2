@@ -57,7 +57,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     private float durationTextY, menuTitleY, hoursLabelY;
     private float energyBarY, energyBarX, energyBarWidth, energyBarHeight;
     private String activity, popupMenuType;
-    private int energyCounter, duration, dayNum, currentHour;// recActivity, studyHours, mealCount,
+    private int energyCounter, duration, dayNum, currentHour,score;// recActivity, studyHours, mealCount,
     private float timeElapsed, fadeTime, minShade;
     private boolean fadeOut, lockTime, lockMovement, lockPopup, resetPos, popupVisible, showMenu;
     private ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
@@ -471,7 +471,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
             if (dayNum == 7) {
                 //recActivtities, studyTimes, meals;
-                int score = 0;
+                score = 0;
                 // studying related
                 boolean diffLocation=false;
                 String firstLocation=studyTimes.get(0).get(1);
@@ -523,7 +523,39 @@ public class MainGameScreen implements Screen, InputProcessor {
                 else{
                     score+=10;
                 }
+                //streaks
+                ArrayList<String> streaks=new ArrayList<String>();
+                int gymVisits=0;
+                for (int i=0;i<recActivtities.size();i++){
+                    if(recActivtities.get(i).get(1)=="Gym_door"){
+                        gymVisits+=1;
+                    }
+                }
+                if(gymVisits>9){
+                    score+=5;
+                    streaks.add("Gym Rat");
+                }
+                int compSciVisits=0;
+                int piazzaStudies=0;
+                for (int i=0;i<studyTimes.size();i++){
+                    if(studyTimes.get(i).get(1)=="Comp_sci_door"){
+                        compSciVisits+=1;
+                    }
+                    if(studyTimes.get(i).get(1)=="Piazza_door"){
+                        piazzaStudies+=1;
+                    }
+                }
+                if(compSciVisits>9){
+                    score+=5;
+                    streaks.add("Hi,I'm Pepper");
+                }
+                if(piazzaStudies>9){
+                    score+=5;
+                    streaks.add("The Pizza Building");
+                }
 
+                
+                
                 //neaten score
                 if (score>100){
                     score=100;
@@ -532,7 +564,7 @@ public class MainGameScreen implements Screen, InputProcessor {
                     score=0;
                 }
 
-                game.screenManager.setScreen(ScreenType.END_SCREEN,score);
+                game.screenManager.setScreen(ScreenType.END_SCREEN,score,streaks);
             }
             resetDay();
         }
