@@ -200,6 +200,14 @@ public class MainGameScreen implements Screen, InputProcessor {
             return "Gym_door";
         if (collisionHandler.isTouching("Goodricke_door", player.getHitBox()))
             return "Goodricke_door";
+        if (collisionHandler.isTouching("Ron_cooke_door", player.getHitBox()))
+            return "Ron_cooke_door";
+        if (collisionHandler.isTouching("lake", player.getHitBox()))
+            return "lake";
+        if (collisionHandler.isTouching("car_park", player.getHitBox()))
+            return "car_park";
+        if (collisionHandler.isTouching("market_door", player.getHitBox()))
+            return "market_door";
         return "";
     }
 
@@ -217,6 +225,16 @@ public class MainGameScreen implements Screen, InputProcessor {
                 return "Sleep Early";
             case "exercise":
                 return "Exercise";
+            case "hangout":
+                return "Hangout with Friends";
+            case "feed":
+                return "Feed the Ducks";
+            case "relax":
+                return "Relax at Home";
+            case "shopping":
+                return "Go Shopping";
+            case "town":
+                return "Go to Town";
             default:
                 return "";
         }
@@ -234,6 +252,11 @@ public class MainGameScreen implements Screen, InputProcessor {
             case "sleep":
                 return menuSleepButton;
             case "exercise":
+            case "feed":
+            case "relax":
+            case "hangout":
+            case "shopping":
+            case "town":
                 return menuGoButton;
             default:
                 return null;
@@ -348,6 +371,22 @@ public class MainGameScreen implements Screen, InputProcessor {
                     shadeOption = 2;
                 }
                 drawMenuOption(player.worldX + 30, player.worldY + 20, "Sleep", shadeOption);
+                break;
+            case "Ron_cooke_door":
+                drawMenuOption(player.worldX + 30, player.worldY + 20, "Hangout", 0);
+                popupVisible = true;
+                break;
+            case "lake":
+                drawMenuOption(player.worldX + 30, player.worldY + 20, "Feed", 0);
+                popupVisible = true;
+                break;
+            case "car_park":
+                drawMenuOption(player.worldX + 30, player.worldY + 20, "Town", 0);
+                popupVisible = true;
+                break;
+            case "market_door":
+                drawMenuOption(player.worldX + 30, player.worldY + 20, "Shopping", 0);
+                popupVisible = true;
                 break;
             default:
                 popupVisible = false;
@@ -708,6 +747,163 @@ public class MainGameScreen implements Screen, InputProcessor {
                     }
                     break;
 
+                case "feed":
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration < 4)
+                            duration = duration + 2;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration > 2)
+                            duration = duration - 2;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = false;
+                        lockMovement = fadeOut;
+                        duration = 1;
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (energyCounter >= duration) {
+                            executeFadeOut(false);
+                            showMenu = false;
+                            lockMovement = fadeOut;
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
+                            energyCounter -= duration;
+                            energyBar.dispose();
+                            energyBar = setEnergyBar();
+                            timeElapsed += duration * secondsPerGameHour;
+                            duration = 1;
+                        }
+                    }
+                case "hangout":
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration < 4)
+                            duration = duration + 2;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration > 2)
+                            duration = duration - 2;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = false;
+                        lockMovement = fadeOut;
+                        duration = 1;
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (energyCounter >= duration) {
+                            executeFadeOut(false);
+                            showMenu = false;
+                            lockMovement = fadeOut;
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
+                            energyCounter -= duration;
+                            energyBar.dispose();
+                            energyBar = setEnergyBar();
+                            timeElapsed += duration * secondsPerGameHour;
+                            duration = 1;
+                        }
+                    }
+
+//                case "relax":
+
+                case "shopping":
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration < 4)
+                            duration = duration + 2;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration > 2)
+                            duration = duration - 2;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = false;
+                        lockMovement = fadeOut;
+                        duration = 1;
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (energyCounter >= duration) {
+                            executeFadeOut(false);
+                            showMenu = false;
+                            lockMovement = fadeOut;
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
+                            energyCounter -= duration;
+                            energyBar.dispose();
+                            energyBar = setEnergyBar();
+                            timeElapsed += duration * secondsPerGameHour;
+                            duration = 1;
+                        }
+                    }
+
+                case "town":
+                    if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration < 4)
+                            duration = duration + 2;
+                    } else if (touchX >= durationDownButtonX && touchX <= durationDownButtonX + durationDownButtonWidth
+                            && touchY >= durationButtonY && touchY <= durationButtonY + durationDownButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (duration > 2)
+                            duration = duration - 2;
+                    } else if (touchX >= menuBackButtonX && touchX <= menuBackButtonX + menuBackButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + menuBackButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = false;
+                        lockMovement = fadeOut;
+                        duration = 1;
+                    } else if (touchX >= activityButtonX && touchX <= activityButtonX + activityButtonWidth
+                            && touchY >= durationMenuButtonY && touchY <= durationMenuButtonY + activityButtonHeight) {
+                        game.gameData.buttonClickedSoundActivate();
+                        if (energyCounter >= duration) {
+                            executeFadeOut(false);
+                            showMenu = false;
+                            lockMovement = fadeOut;
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
+                            energyCounter -= duration;
+                            energyBar.dispose();
+                            energyBar = setEnergyBar();
+                            timeElapsed += duration * secondsPerGameHour;
+                            duration = 1;
+                        }
+                    }
+
                 case "sleep":
                     if (touchX >= durationUpButtonX && touchX <= durationUpButtonX + durationUpButtonWidth
                             && touchY >= durationButtonY && touchY <= durationButtonY + durationUpButtonHeight) {
@@ -793,6 +989,50 @@ public class MainGameScreen implements Screen, InputProcessor {
                         lockMovement = true;
                         activity = "sleep";
                         duration = 1;
+                    }
+                    break;
+
+                case "Ron_cooke_door":
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = true;
+                        lockMovement = true;
+                        activity = "hangout";
+                        duration = 2;
+                    }
+                    break;
+
+                case "lake":
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = true;
+                        lockMovement = true;
+                        activity = "feed";
+                        duration = 2;
+                    }
+                    break;
+
+                case "car_park":
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = true;
+                        lockMovement = true;
+                        activity = "town";
+                        duration = 2;
+                    }
+                    break;
+
+                case "market_door":
+                    if (touchX >= studyOpt.x && touchX <= studyOpt.x + popupMenuWidth * zoom && touchY >= studyOpt.y
+                            && touchY <= studyOpt.y + popupMenuHeight * zoom) {
+                        game.gameData.buttonClickedSoundActivate();
+                        showMenu = true;
+                        lockMovement = true;
+                        activity = "shopping";
+                        duration = 2;
                     }
                     break;
             }
