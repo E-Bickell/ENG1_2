@@ -440,7 +440,7 @@ public class MainGameScreen implements Screen, InputProcessor {
      * Renders the UI elements of the game.
      */
     private void drawUIElements() {
-        String counterString = String.format("Recreation Activities done: " + recActivtities.size() + "\nStudy hours: "
+        String counterString = String.format("Recreation Activities done: " + recActivtities.size() + "\nTimes Studied: "
                 + studyTimes.size() + "\nMeals Eaten: " + meals.size(), dayNum, timeElapsed);
         game.batch.setProjectionMatrix(game.defaultCamera.combined);
         if (showMenu)
