@@ -19,6 +19,7 @@ public class ScoringTests {
          gameScreen.dayNum=7;
          assertEquals(gameScreen.score,0);
     }
+    @Test
     public void testPerfect(){
         ArrayList<String> studied = new ArrayList<String>();
         studied.add('0','1');
