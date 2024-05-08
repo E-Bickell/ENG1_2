@@ -82,6 +82,23 @@ public class MainMenuScreen implements Screen, InputProcessor {
         exitButtonY = game.screenHeight - exitButtonHeight * 6.25f;
     }
 
+    public float getPlayButtonY(){
+        return playButtonY;
+    }
+    public float getExitButtonY(){
+        return exitButtonY;
+    }
+    public float getControlsButtonY(){
+        return controlsButtonY;
+    }
+    public float getSettingsButtonY(){
+        return settingsButtonY;
+    }
+    public int getX(){
+        return x;
+    }
+
+
     @Override
     public void show() {
         game.batch.setProjectionMatrix(game.defaultCamera.combined);

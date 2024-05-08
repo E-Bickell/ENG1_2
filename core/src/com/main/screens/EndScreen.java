@@ -52,6 +52,17 @@ public class EndScreen implements Screen, InputProcessor {
         titleY = game.screenHeight - 120f * game.scaleFactorY;
     }
 
+    public float getPlayAgainButtonY(){
+        return playAgainButtonY;
+    }
+    public float getExitButtonY(){
+        return exitButtonY;
+    }
+    public float getButtonX(){
+        return buttonX;
+    }
+
+
     @Override
     public void render(float v) {
         if (exitFlag) return;
