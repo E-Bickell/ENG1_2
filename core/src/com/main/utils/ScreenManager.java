@@ -105,6 +105,8 @@ public class ScreenManager {
                 return new TypingGame(game, (int) args[0]);
             case END_SCREEN:
                 return new EndScreen(game,(int) args[0],(ArrayList<String>)args[1]);
+            case LEADERBOARD_SCREEN:
+                return new LeaderboardScreen(game);
         }
         return null;
     }
