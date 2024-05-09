@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(GdxTestRunner.class)
 
 public class ScoringTests {
+<<<<<<< Updated upstream
     Game game=new Game();
     MainGameScreen gameScreen=new MainGameScreen(game);
     @Test
@@ -49,5 +50,13 @@ public class ScoringTests {
         assertEquals(gameScreen.score,96);
 
     }
+=======
+    // MainGameScreen gameScreen=new MainGameScreen(game);
+    // @Test
+    // public void testNoActions(){
+    //     game.dayNum=7;
+    //     assertEquals(game.score,0);
+    // }
+>>>>>>> Stashed changes
 
 }
