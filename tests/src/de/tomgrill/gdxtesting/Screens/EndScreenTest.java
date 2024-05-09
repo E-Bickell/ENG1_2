@@ -31,7 +31,9 @@ public class EndScreenTest {
     public void pressExitButton(){
         int exitX = (int)end.getButtonX();
         int exitY = (int)end.getExitButtonY();
-        assertTrue("true", end.touchDown(exitX, exitY, 0, 0));
+
+        boolean boolResult = end.touchDown(exitX, exitY, 0, 0));
+        assertTrue("true", boolResult);
     }
 
 }
