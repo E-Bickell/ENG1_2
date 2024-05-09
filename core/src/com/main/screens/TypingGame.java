@@ -160,6 +160,9 @@ public class TypingGame implements Screen, InputProcessor {
         return num;
     }
 
+    public float getGuessButtonX() {return guessButtonX;}
+    public float getGuessButtonY() {return guessButtonY;}
+
     @Override
     public void resize(int width, int height) {
         calculateDimensions();

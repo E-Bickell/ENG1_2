@@ -75,6 +75,9 @@ public class MainControlScreen implements Screen, InputProcessor {
         instructionX = game.screenWidth / 2f - 90 * game.scaleFactorX;
     }
 
+    public float getBackButtonX() {return backButtonX;}
+    public float getBackButtonY() {return backButtonY;}
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(this);

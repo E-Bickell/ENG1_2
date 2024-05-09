@@ -115,6 +115,25 @@ public class MainSettingsScreen implements Screen, InputProcessor {
         girlButtonX = (game.screenWidth - boyButtonWidth) / 2 + (100 * game.scaleFactorX);
         girlButtonY = game.screenHeight - boyButtonHeight - (650 * game.scaleFactorY);
     }
+
+    public float getMusicDownButtonX() {return musicDownButtonX;}
+    public float getMusicDownButtonY() {return musicDownButtonY;}
+    public float getMusicUpButtonX() {return musicUpButtonX;}
+    public float getMusicUpButtonY() {return musicUpButtonY;}
+    public float getSoundDownButtonX() {return soundDownButtonX;}
+    public float getSoundDownButtonY() {return soundDownButtonY;}
+    public float getSoundUpButtonX() {return soundUpButtonX;}
+    public float getSoundUpButtonY() {return soundUpButtonY;}
+    public float getBackButtonX() {return backButtonX;}
+    public float getBackButtonY() {return backButtonY;}
+    public float getBoyButtonX() {return boyButtonX;}
+    public float getBoyButtonY() {return boyButtonY;}
+    public float getGirlButtonX() {return girlButtonX;}
+    public float getGirlButtonY() {return girlButtonY;}
+
+
+
+
     @Override
     public void show() {
         game.batch.setProjectionMatrix(game.defaultCamera.combined);

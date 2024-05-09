@@ -26,4 +26,31 @@ public class MainMenuTest {
 
         assertTrue("true", boolResult);
     }
+    @Test
+    public void testExitButton(){
+        int x = mainMenu.getX();
+        int y = (int)mainMenu.getExitButtonY();
+
+        boolean boolResult = mainMenu.touchDown(x, y, 0,0);
+
+        assertTrue("true", boolResult);
+    }
+    @Test
+    public void testControlsButton(){
+        int x = mainMenu.getX();
+        int y = (int)mainMenu.getControlsButtonY();
+
+        boolean boolResult = mainMenu.touchDown(x, y, 0,0);
+
+        assertTrue("true", boolResult);
+    }
+    @Test
+    public void testSettingsButton(){
+        int x = mainMenu.getX();
+        int y = (int)mainMenu.getSettingsButtonY();
+
+        boolean boolResult = mainMenu.touchDown(x, y, 0,0);
+
+        assertTrue("true", boolResult);
+    }
 }
