@@ -61,6 +61,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     private float timeElapsed, fadeTime, minShade;
     private boolean fadeOut, lockTime, lockMovement, lockPopup, resetPos, popupVisible, showMenu;
     private ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
+    private ArrayList<String> streaks;
 
     /**
      * Constructs the main game screen with necessary game components.
@@ -101,6 +102,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         this.recActivtities = new ArrayList<ArrayList<String>>();
         this.meals = new ArrayList<ArrayList<String>>();
         this.studyTimes = new ArrayList<ArrayList<String>>();
+        this.streaks=new ArrayList<String>();
 
         // Setting up the game
         this.camera = new OrthographicCamera();
@@ -172,6 +174,35 @@ public class MainGameScreen implements Screen, InputProcessor {
     public float getMenuBackButtonX() {return menuBackButtonX;}
     public float getActivityButtonX() {return activityButtonX;}
     public float getDurationMenuButtonY() {return durationMenuButtonY;}
+
+    // testing getter and setters
+    public void setdayNum(int newNum){
+        dayNum=newNum;
+    }
+
+    public void setCurrentHour(int currentHour) {
+        this.currentHour = currentHour;
+    }
+
+    public void addStudyTimes(ArrayList<String> time){
+        studyTimes.add(time);
+    }
+
+    public void addeatTimes(ArrayList<String> time){
+        meals.add(time);
+    }
+
+    public void addRecTimes(ArrayList<String> time){
+        recActivtities.add(time);
+    }
+
+    public int getScore() {
+        return score;
+    }
+    
+    public boolean inStreaks(String name){
+        return(this.streaks.contains(name));
+    }
 
     @Override
     public void render(float delta) {
@@ -572,7 +603,7 @@ public class MainGameScreen implements Screen, InputProcessor {
                     score+=10;
                 }
                 //streaks
-                ArrayList<String> streaks=new ArrayList<String>();
+                
                 int gymVisits=0;
                 for (int i=0;i<recActivtities.size();i++){
                     if(recActivtities.get(i).get(1)=="Gym_door"){
