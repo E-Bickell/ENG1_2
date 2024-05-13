@@ -1,6 +1,11 @@
 buildscript {
+    plugins {
+        // java-library plugin for API/impl separation.
+        id 'java-library’
+        // Use the JaCoCo plugin to calculate code coverage
+        id 'jacoco’
+    }
     
-
     repositories {
         mavenLocal()
         mavenCentral()
