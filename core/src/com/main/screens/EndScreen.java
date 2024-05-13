@@ -17,13 +17,15 @@ public class EndScreen implements Screen, InputProcessor {
     Texture playAgainButton, exitButton;
     BitmapFont font;
     String titleText;
+    int score;
     float playAgainButtonY, exitButtonY;
     float buttonX, buttonWidth, buttonHeight;
     float titleY;
     boolean exitFlag;
     public EndScreen(Main game,int score,ArrayList<String> streaks){
         this.game = game;
-        titleText = "The End \n Score: "+String.valueOf(score)+"\n Streaks:";
+        this.score = score;
+        titleText = "The End \n Score: "+String.valueOf(this.score)+"\n Streaks:";
     
         for (int i=0;i<streaks.size();i++){
             titleText+="\n"+streaks.get(i);

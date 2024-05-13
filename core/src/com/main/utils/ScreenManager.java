@@ -107,6 +107,8 @@ public class ScreenManager {
                 return new EndScreen(game,(int) args[0],(ArrayList<String>)args[1]);
             case LEADERBOARD_SCREEN:
                 return new LeaderboardScreen(game);
+            case ADD_LEADERBOARD_ENTRY_SCREEN:
+                return new AddLeaderboardEntryScreen(game, (int) args[0]);
         }
         return null;
     }

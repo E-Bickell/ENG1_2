@@ -17,14 +17,14 @@ public class MainMenuScreen implements Screen, InputProcessor {
 
     Main game;
 
-    Texture heslingtonHustleLabel, playButton, controlsButton, settingsButton, exitButton;
+    Texture heslingtonHustleLabel, playButton, controlsButton, settingsButton, exitButton, leaderboardButton;
 
-    int heslingtonHustleLabelHeight, playButtonHeight, controlsButtonHeight, settingsButtonHeight, exitButtonHeight;
-    int heslingtonHustleLabelWidth, playButtonWidth, controlsButtonWidth, settingsButtonWidth, exitButtonWidth;
+    int heslingtonHustleLabelHeight, playButtonHeight, controlsButtonHeight, settingsButtonHeight, exitButtonHeight, leaderButtonHeight;
+    int heslingtonHustleLabelWidth, playButtonWidth, controlsButtonWidth, settingsButtonWidth, exitButtonWidth, leaderButtonWidth;
 
     int x;
-    float heslingtonHustleLabelX;
-    float heslingtonHustleLabelY, playButtonY, controlsButtonY, settingsButtonY, exitButtonY;
+    float heslingtonHustleLabelX, leaderButtonX;
+    float heslingtonHustleLabelY, playButtonY, controlsButtonY, settingsButtonY, exitButtonY, leaderButtonY;
 
     boolean exitFlag;
 
@@ -51,6 +51,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
         controlsButton = new Texture("menu_gui/controls_button.png");
         settingsButton = new Texture("menu_gui/settings_button.png");
         exitButton = new Texture("menu_gui/exit_button.png");
+        leaderboardButton = new Texture("leaderboard_gui/Leaderboard_icon.png");
     }
 
     /**
@@ -67,6 +68,8 @@ public class MainMenuScreen implements Screen, InputProcessor {
         settingsButtonWidth = (int) (settingsButton.getWidth() * 10 * game.scaleFactorX);
         exitButtonHeight = (int) (exitButton.getHeight() * 10 * game.scaleFactorY);
         exitButtonWidth = (int) (exitButton.getWidth() * 10 * game.scaleFactorX);
+        leaderButtonHeight = (int) (leaderboardButton.getHeight() * 10 * game.scaleFactorY);
+        leaderButtonWidth = (int) (leaderboardButton.getWidth() * 10 * game.scaleFactorX);
     }
 
     /**
@@ -75,11 +78,13 @@ public class MainMenuScreen implements Screen, InputProcessor {
     private void calculatePositions() {
         heslingtonHustleLabelX = (game.screenWidth - heslingtonHustleLabelWidth) / 2f;
         x = (int) ((game.screenWidth - playButtonWidth) / 2f); // this is to make sure the buttons are centered
+        leaderButtonX = game.screenWidth - (leaderButtonWidth + (50 * game.scaleFactorX));
         heslingtonHustleLabelY = game.screenHeight - heslingtonHustleLabelHeight * 1.25f;
         playButtonY = game.screenHeight - playButtonHeight * 2.5f;
         controlsButtonY = game.screenHeight - controlsButtonHeight * 3.75f;
         settingsButtonY = game.screenHeight - settingsButtonHeight * 5f;
         exitButtonY = game.screenHeight - exitButtonHeight * 6.25f;
+        leaderButtonY = 50 * game.scaleFactorY;
     }
 
     public float getPlayButtonY(){
@@ -117,6 +122,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
         game.batch.draw(controlsButton, x, controlsButtonY, controlsButtonWidth, controlsButtonHeight);
         game.batch.draw(settingsButton, x, settingsButtonY, settingsButtonWidth, settingsButtonHeight);
         game.batch.draw(exitButton, x, exitButtonY, exitButtonWidth, exitButtonHeight);
+        game.batch.draw(leaderboardButton, leaderButtonX, leaderButtonY, leaderButtonWidth, leaderButtonHeight);
         game.batch.end();
     }
 
@@ -160,6 +166,10 @@ public class MainMenuScreen implements Screen, InputProcessor {
             exitFlag = true;
             dispose();
             Gdx.app.exit();
+        }
+        else if (touchX >= leaderButtonX && touchX <= leaderButtonX + leaderButtonWidth && touchY >= leaderButtonY && touchY <= leaderButtonY + leaderButtonHeight) {
+            game.gameData.buttonClickedSoundActivate();
+            game.screenManager.setScreen(ScreenType.LEADERBOARD_SCREEN);
         }
         return true;
     }
@@ -216,5 +226,6 @@ public class MainMenuScreen implements Screen, InputProcessor {
         settingsButton.dispose();
         exitButton.dispose();
         heslingtonHustleLabel.dispose();
+        leaderboardButton.dispose();
     }
 }
