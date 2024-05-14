@@ -169,7 +169,7 @@ public class MainMenuScreen implements Screen, InputProcessor {
         }
         else if (touchX >= leaderButtonX && touchX <= leaderButtonX + leaderButtonWidth && touchY >= leaderButtonY && touchY <= leaderButtonY + leaderButtonHeight) {
             game.gameData.buttonClickedSoundActivate();
-            game.screenManager.setScreen(ScreenType.LEADERBOARD_SCREEN);
+            game.screenManager.setScreen(ScreenType.ADD_LEADERBOARD_ENTRY_SCREEN, 10);
         }
         return true;
     }

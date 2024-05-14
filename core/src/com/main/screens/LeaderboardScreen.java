@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -38,6 +39,7 @@ public class LeaderboardScreen implements Screen, InputProcessor {
 
     private void loadAssets(){
         font = new BitmapFont(Gdx.files.internal("font/WhitePeaberry.fnt"));
+        font.setColor(Color.BLACK);
         leaderboardLabel = new Texture(Gdx.files.internal("leaderboard_gui/leaderboard_label.png"));
         positionBack = new Texture(Gdx.files.internal("leaderboard_gui/Position_Base.png"));
         nameBack = new Texture(Gdx.files.internal("leaderboard_gui/Name_Tag_Base.png"));
@@ -47,8 +49,8 @@ public class LeaderboardScreen implements Screen, InputProcessor {
 
     private void calculateDimensions(){
         font.getData().setScale(1.5f * game.scaleFactorX, 1.5f * game.scaleFactorY);
-        backButtonWidth = backButton.getWidth() * 10 * game.scaleFactorX;
-        backButtonHeight = backButton.getHeight() * 10 * game.scaleFactorY;
+        backButtonWidth = 200 * game.scaleFactorX;
+        backButtonHeight = 100 * game.scaleFactorY;
         leaderboardLabelWidth = leaderboardLabel.getWidth() * 10 * game.scaleFactorX;
         leaderboardLabelHeight = leaderboardLabel.getHeight() * 10 * game.scaleFactorY;
         positionWidth = positionBack.getWidth() * 5 * game.scaleFactorX;
@@ -66,24 +68,24 @@ public class LeaderboardScreen implements Screen, InputProcessor {
         leaderboardLabelY =  game.screenHeight - (leaderboardLabelHeight * 2);
 
         positionX = new float[2];
-        positionX[0] = positionWidth;
-        positionX[1] = positionWidth + ((float) game.screenWidth / 2);
+        positionX[0] = (50 * game.scaleFactorX);
+        positionX[1] = ((float) game.screenWidth / 2);
 
         nameX = new float[2];
-        nameX[0] = positionX[0] + ((float) game.screenWidth / 100);
-        nameX[1] = positionX[1] + ((float) game.screenWidth / 100);
+        nameX[0] = positionX[0] + positionWidth + (25 * game.scaleFactorX);
+        nameX[1] = positionX[1] + positionWidth + (25 * game.scaleFactorX);
 
         scoreX = new float[2];
-        scoreX[0] = nameX[0] + ((float) game.screenWidth / 100);
-        scoreX[1] = nameX[1] + ((float) game.screenWidth / 100);
+        scoreX[0] = nameX[0] + nameWidth + (25 * game.scaleFactorX);
+        scoreX[1] = nameX[1] + nameWidth + (25 * game.scaleFactorX);
 
         boxY = new float[5];
         textY = new float[5];
-        boxY[0] = leaderboardLabelY - ((float) game.screenHeight / 50);
+        boxY[0] = leaderboardLabelY - (90 * game.scaleFactorY);
         textY[0] = boxY[0] + (positionHeight / 7);
         for (int i = 1; i < 5; i++){
-            boxY[i] = boxY[i-1] - ((float) game.screenHeight / 50);
-            textY[i] = boxY[i-1] + (positionHeight / 7);
+            boxY[i] = boxY[i-1] - (75 * game.scaleFactorY);
+            textY[i] = boxY[i] + positionHeight;
         }
 
         textX = (positionWidth / 22 * 4);
@@ -143,7 +145,8 @@ public class LeaderboardScreen implements Screen, InputProcessor {
 
     @Override
     public void show() {
-
+        game.batch.setProjectionMatrix(game.defaultCamera.combined);
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
@@ -157,11 +160,12 @@ public class LeaderboardScreen implements Screen, InputProcessor {
             for (int j = 0; j < 5; j++) {
                 game.batch.draw(positionBack, positionX[i], boxY[j], positionWidth, positionHeight);
                 game.batch.draw(nameBack, nameX[i], boxY[j], nameWidth, nameHeight);
-                game.batch.draw(scoreBack, scoreX[0], boxY[j], scoreWidth, scoreHeight);
+                game.batch.draw(scoreBack, scoreX[i], boxY[j], scoreWidth, scoreHeight);
+                int val = num + 1;
+                font.draw(game.batch, String.valueOf(val), positionX[i] + textX, textY[j]);
+                font.draw(game.batch, String.valueOf(leaderboard.get(num).getName()), nameX[i] + textX, textY[j]);
+                font.draw(game.batch, String.valueOf(leaderboard.get(num).getScore()), scoreX[i] + textX, textY[j]);
                 num += 1;
-                font.draw(game.batch, String.valueOf(num), positionX[i] + textX, textY[i]);
-                font.draw(game.batch, String.valueOf(leaderboard.get(num-1).getName()), nameX[i] + textX, textY[i]);
-                font.draw(game.batch, String.valueOf(leaderboard.get(num-1).getScore()), scoreX[i] + textX, textY[i]);
             }
         }
         game.batch.draw(backButton, backButtonX, backButtonY, backButtonWidth, backButtonHeight);
