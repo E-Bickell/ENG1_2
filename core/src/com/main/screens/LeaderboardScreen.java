@@ -82,7 +82,7 @@ public class LeaderboardScreen implements Screen, InputProcessor {
         boxY = new float[5];
         textY = new float[5];
         boxY[0] = leaderboardLabelY - (90 * game.scaleFactorY);
-        textY[0] = boxY[0] + (positionHeight / 7);
+        textY[0] = boxY[0] + positionHeight;
         for (int i = 1; i < 5; i++){
             boxY[i] = boxY[i-1] - (75 * game.scaleFactorY);
             textY[i] = boxY[i] + positionHeight;

@@ -3,7 +3,6 @@ package com.main.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,19 +18,17 @@ import java.util.ArrayList;
 public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
     Main game;
     int score;
-    String name;
+    String name = "";
     Texture enterButton, backButton, leaderboardLabel, nameBack;
     float enterButtonX, enterButtonY, backButtonX, backButtonY, labelX, labelY, textY, nameX, nameY;
     float enterButtonWidth, enterButtonHeight, backButtonWidth, backButtonHeight, labelWidth, labelHeight, nameWidth, nameHeight;
     BitmapFont font;
-    FileHandle lbFile;
     ArrayList<Score> leaderboard;
 
     public AddLeaderboardEntryScreen(Main game, int score){
         this.game = game;
         this.score = score;
         leaderboard = LeaderboardUtils.LoadLeaderboard("scores/GameLeaderboard.json");
-        name = "";
         Gdx.input.setInputProcessor(this);
 
         loadAssets();
@@ -68,7 +65,7 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
         labelY = game.screenHeight - (labelHeight * 2);
         nameX = (game.screenWidth - nameWidth) / 2;
         nameY = labelY - (300 * game.scaleFactorY);
-        textY = nameY + (nameHeight / 7);
+        textY = nameY + nameHeight;
     }
 
     @Override
@@ -85,7 +82,7 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
     public boolean keyTyped(char character) {
         if (character == '\b' && !name.isEmpty()) { // Handles backspace
             name = name.substring(0, name.length() - 1);
-        } else if (Character.isDigit(character) && name.length() < 16) {
+        } else if (name.length() < 16) {
             name += character;
         }
         return true;
@@ -97,7 +94,6 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
 
         if (touchX >= backButtonX && touchX <= backButtonX + backButtonWidth &&
                 touchY >= backButtonY && touchY <= backButtonY + backButtonHeight) {
-            System.out.println(name);
             game.screenManager.setScreen(ScreenType.MAIN_MENU);
             game.gameData.buttonClickedSoundActivate();
         } else if (touchX >= enterButtonX && touchX <= enterButtonX + enterButtonWidth &&

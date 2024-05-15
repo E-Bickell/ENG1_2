@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.main.Main;
+import com.main.utils.ScreenType;
+
 import java.util.ArrayList;
 
 public class EndScreen implements Screen, InputProcessor {
@@ -98,7 +100,7 @@ public class EndScreen implements Screen, InputProcessor {
         if (touchX >= buttonX && touchX <= buttonX + buttonWidth &&
                 touchY >= playAgainButtonY && touchY <= playAgainButtonY + buttonHeight) {
             game.gameData.buttonClickedSoundActivate();
-            game.setup();
+            game.screenManager.setScreen(ScreenType.ADD_LEADERBOARD_ENTRY_SCREEN, score);
         }
         else if (touchX >= buttonX && touchX <= buttonX + buttonWidth &&
                 touchY >= exitButtonY && touchY <= exitButtonY + buttonHeight) {

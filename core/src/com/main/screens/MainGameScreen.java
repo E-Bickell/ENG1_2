@@ -534,9 +534,109 @@ public class MainGameScreen implements Screen, InputProcessor {
         game.batch.end();
     }
 
+    /** Calculates the final score, and takes you to the end screen*/
+
+    private void endGame(){
+        //recActivtities, studyTimes, meals;
+        score = 0;
+        // studying related
+        boolean diffLocation=false;
+        String firstLocation=studyTimes.get(0).get(1);
+        int dayCheck=1;
+        for(int i=0;i<studyTimes.size();i++){
+            score=score+5;
+            if(firstLocation != studyTimes.get(i).get(1) && !diffLocation){
+                score+=5;
+                diffLocation=true;
+            }
+            if(Integer.valueOf(studyTimes.get(i).get(0))==dayCheck){
+                score++;
+                dayCheck++;
+            }
+            else if(Integer.valueOf(studyTimes.get(i).get(0))>dayCheck ){
+                dayCheck=Integer.valueOf(studyTimes.get(i).get(0));
+            }
+        }
+        if(studyTimes.size()>7&&studyTimes.size()<11){
+            score+=5;
+        }
+        else if(studyTimes.size()>15){score-=15;}
+        else if(studyTimes.size()>10){score-=5;}
+
+        //eating regularly
+        dayCheck=1;
+        int timeEatenToday=0;
+        for (int i=0;i<meals.size();i++){
+            if(Integer.valueOf(meals.get(i).get(0))==dayCheck){
+                timeEatenToday++;
+            }
+
+            if (Integer.valueOf(meals.get(i).get(0))>dayCheck){
+                if (timeEatenToday>2){
+                    score+=3;
+                }
+                int difference=Integer.valueOf(meals.get(i).get(0))-dayCheck+1;
+                score-=3+difference;
+                dayCheck=Integer.valueOf(meals.get(i).get(0));
+                timeEatenToday=1;
+            }
+
+        }
+
+        //recreation score
+        if (recActivtities.size()<11){
+            score+=recActivtities.size();
+        }
+        else{
+            score+=10;
+        }
+        //streaks
+
+        int gymVisits=0;
+        for (int i=0;i<recActivtities.size();i++){
+            if(recActivtities.get(i).get(1)=="Gym_door"){
+                gymVisits+=1;
+            }
+        }
+        if(gymVisits>9){
+            score+=5;
+            streaks.add("Gym Rat");
+        }
+        int compSciVisits=0;
+        int piazzaStudies=0;
+        for (int i=0;i<studyTimes.size();i++){
+            if(studyTimes.get(i).get(1)=="Comp_sci_door"){
+                compSciVisits+=1;
+            }
+            if(studyTimes.get(i).get(1)=="Piazza_door"){
+                piazzaStudies+=1;
+            }
+        }
+        if(compSciVisits>9){
+            score+=5;
+            streaks.add("Hi,I'm Pepper");
+        }
+        if(piazzaStudies>9){
+            score+=5;
+            streaks.add("The Pizza Building");
+        }
+
+
+
+        //neaten score
+        if (score>100){
+            score=100;
+        }
+        if(score<0){
+            score=0;
+        }
+
+        game.screenManager.setScreen(ScreenType.END_SCREEN,score,streaks);
+    }
+
     /**
      * Updates the game time and handles the transition from day to night.
-     * 
+     *
      * @param delta The time elapsed since the last frame.
      */
     private void updateGameTime(float delta) {
@@ -549,101 +649,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         // Ensure the hour cycles through the active hours correctly (8 AM to 12 AM)
         if (currentHour >= 24) { // If it reaches 12 AM, reset to 8 AM the next day
             if (dayNum == 7) {
-                //recActivtities, studyTimes, meals;
-                score = 0;
-                // studying related
-                boolean diffLocation=false;
-                String firstLocation=studyTimes.get(0).get(1);
-                int dayCheck=1;
-                for(int i=0;i<studyTimes.size();i++){
-                    score=score+5;
-                    if(firstLocation != studyTimes.get(i).get(1) && !diffLocation){
-                        score+=5;
-                        diffLocation=true;
-                    }
-                    if(Integer.valueOf(studyTimes.get(i).get(0))==dayCheck){
-                        score++;
-                        dayCheck++;
-                    }
-                    else if(Integer.valueOf(studyTimes.get(i).get(0))>dayCheck ){
-                        dayCheck=Integer.valueOf(studyTimes.get(i).get(0));
-                    }
-                }
-                if(studyTimes.size()>7&&studyTimes.size()<11){
-                    score+=5;
-                }
-                else if(studyTimes.size()>15){score-=15;}
-                else if(studyTimes.size()>10){score-=5;}
-
-                //eating regularly
-                dayCheck=1;
-                int timeEatenToday=0;
-                for (int i=0;i<meals.size();i++){
-                    if(Integer.valueOf(meals.get(i).get(0))==dayCheck){
-                        timeEatenToday++;
-                    }
-
-                    if (Integer.valueOf(meals.get(i).get(0))>dayCheck){
-                        if (timeEatenToday>2){
-                            score+=3;
-                        }
-                        int difference=Integer.valueOf(meals.get(i).get(0))-dayCheck+1;
-                        score-=3+difference;
-                        dayCheck=Integer.valueOf(meals.get(i).get(0));
-                        timeEatenToday=1;
-                    }
-
-                }
-
-                //recreation score
-                if (recActivtities.size()<11){
-                    score+=recActivtities.size();
-                }
-                else{
-                    score+=10;
-                }
-                //streaks
-                
-                int gymVisits=0;
-                for (int i=0;i<recActivtities.size();i++){
-                    if(recActivtities.get(i).get(1)=="Gym_door"){
-                        gymVisits+=1;
-                    }
-                }
-                if(gymVisits>9){
-                    score+=5;
-                    streaks.add("Gym Rat");
-                }
-                int compSciVisits=0;
-                int piazzaStudies=0;
-                for (int i=0;i<studyTimes.size();i++){
-                    if(studyTimes.get(i).get(1)=="Comp_sci_door"){
-                        compSciVisits+=1;
-                    }
-                    if(studyTimes.get(i).get(1)=="Piazza_door"){
-                        piazzaStudies+=1;
-                    }
-                }
-                if(compSciVisits>9){
-                    score+=5;
-                    streaks.add("Hi,I'm Pepper");
-                }
-                if(piazzaStudies>9){
-                    score+=5;
-                    streaks.add("The Pizza Building");
-                }
-
-                
-                
-                //neaten score
-                if (score>100){
-                    score=100;
-                }
-                if(score<0){
-                    score=0;
-                }
-
-                game.screenManager.setScreen(ScreenType.END_SCREEN,score,streaks);
+                endGame();
             }
             resetDay();
         }
@@ -994,6 +1000,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                         game.gameData.buttonClickedSoundActivate();
                         showMenu = false;
                         lockMovement = fadeOut;
+                        if (dayNum == 7) {
+                            endGame();
+                        }
                         resetDay();
                         duration = 1;
                     }
