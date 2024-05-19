@@ -1,0 +1,59 @@
+@startgantt
+hide resources footbox
+-- Change Report --
+[Requirements] on {Eleanor} lasts 7 days
+[Architecture] on {Olivia, Donovan} lasts 7 days
+[Method Selection and planning] on {Alex, Isaac} lasts 34 days
+[Risk Mitigation] on {Robbie} lasts 7 days
+[Change Report] on {All} lasts 34 days
+-- Testing --
+[Utils tests] on {Isaac} lasts 7 days
+[Player tests] on {Eleanor} lasts 7 days
+[Map tests] on {Donovan} lasts 7 days
+[Screen tests] on {Olivia, Alex} lasts 7 days
+[Sound tests] on {Robbie} lasts 7 days
+-- Continuous Integration --
+[Continuous Integration] lasts 7 days
+-- Implementation --
+[Implementation] lasts 14 days
+-- User Evaluation --
+then [User Evaluation] lasts 7 days
+
+[Requirements] is colored in LightBlue/Black
+[Architecture] is colored in LightBlue/Black
+[Method Selection and planning] is colored in LightBlue/Black
+[Risk Mitigation] is colored in LightBlue/Black
+[Change Report] is colored in LightBlue/Black
+
+[Utils tests] is colored in Yellow/Black
+[Player tests] is colored in Yellow/Black
+[Map tests] is colored in Yellow/Black
+[Screen tests] is colored in Yellow/Black
+[Sound tests] is colored in Yellow/Black
+
+[Continuous Integration] is colored in Pink/Black
+
+[Implementation] is colored in Lime/Black
+
+[User Evaluation] is coloured in Red/Black
+
+Project starts 2024-04-19
+
+[Requirements] starts 2024-04-19
+[Architecture] starts 2024-04-19
+[Method Selection and planning] starts 2024-04-19
+[Risk Mitigation] starts 2024-04-19
+[Change Report] starts 2024-04-19
+
+[Utils tests] starts 2024-04-19
+[Player tests] starts 2024-04-19
+[Map tests] starts 2024-04-19
+[Screen tests] starts 2024-04-19
+[Sound tests] starts 2024-04-19
+
+[Continuous Integration] starts at [Sound tests]'s end
+
+[Implementation] starts at [Sound tests]'s end
+
+[User Evaluation] starts at [Implementation]'s end
+@endgantt

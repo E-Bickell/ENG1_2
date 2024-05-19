@@ -1,0 +1,74 @@
+@startgantt
+hide resources footbox
+-- Change Report --
+[Requirements] on {Eleanor} lasts 7 days
+[Architecture] on {Olivia, Donovan} lasts 7 days
+[Method Selection and planning] on {Alex, Isaac} lasts 34 days
+[Risk Mitigation] on {Robbie} lasts 7 days
+[Change Report] on {All} lasts 34 days
+-- Testing --
+[Utils tests] on {Isaac} lasts 21 days
+[Player tests] on {Eleanor} lasts 21 days
+[Map tests] on {Donovan} lasts 21 days
+[Screen tests] on {Olivia, Alex} lasts 21 days
+[Sound tests] on {Robbie} lasts 21 days
+[Leaderboard tests] on {Isaac} lasts 14 days
+[Streaks and scoring tests] on {Eleanor} lasts 14 days
+[Extra Areas tests] on {Alex} lasts 14 days
+-- Continuous Integration --
+[Continuous Integration] on {Eleanor} lasts 14 days
+-- Implementation --
+[Leaderboard] on {Isaac} lasts 14 days
+[Streaks and scoring] on {Eleanor} lasts 14 days
+[Extra Areas] on {Alex} lasts 14 days
+-- User Evaluation --
+then [User Evaluation] lasts 7 days
+
+[Requirements] is colored in LightBlue/Black
+[Architecture] is colored in LightBlue/Black
+[Method Selection and planning] is colored in LightBlue/Black
+[Risk Mitigation] is colored in LightBlue/Black
+[Change Report] is colored in LightBlue/Black
+
+[Utils tests] is colored in Yellow/Black
+[Player tests] is colored in Yellow/Black
+[Map tests] is colored in Yellow/Black
+[Screen tests] is colored in Yellow/Black
+[Sound tests] is colored in Yellow/Black
+[Leaderboard tests] is colored in Yellow/Black
+[Streaks and scoring tests] is colored in Yellow/Black
+[Extra Areas tests] is colored in Yellow/Black
+
+[Continuous Integration] is colored in Pink/Black
+
+[Leaderboard] is colored in Lime/Black
+[Streaks and scoring] is colored in Lime/Black
+[Extra Areas] is colored in Lime/Black
+
+[User Evaluation] is coloured in Red/Black
+
+Project starts 2024-04-19
+
+[Requirements] starts 2024-04-19
+[Architecture] starts 2024-04-19
+[Method Selection and planning] starts 2024-04-19
+[Risk Mitigation] starts 2024-04-19
+[Change Report] starts 2024-04-19
+
+[Utils tests] starts 2024-04-19
+[Player tests] starts 2024-04-19
+[Map tests] starts 2024-04-19
+[Screen tests] starts 2024-04-19
+[Sound tests] starts 2024-04-19
+[Leaderboard tests] starts 2024-04-26
+[Streaks and scoring tests] starts 2024-04-26
+[Extra Areas tests] starts 2024-04-26
+
+[Continuous Integration] starts at 2024-04-26
+
+[Leaderboard] starts at 2024-04-26
+[Streaks and scoring] starts at 2024-04-26
+[Extra Areas] starts at 2024-04-26
+
+[User Evaluation] starts at [Extra Areas]'s end
+@endgantt

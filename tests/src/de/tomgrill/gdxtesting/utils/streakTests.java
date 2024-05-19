@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(GdxTestRunner.class)
 
@@ -24,7 +25,7 @@ public class streakTests {
         }
         gameScreen.setCurrentHour(24);
         gameScreen.setdayNum(7);
-        assertEquals(true,gameScreen.inStreaks("Gym Rat"));
+        assertTrue(gameScreen.inStreaks("Gym Rat"));
 
     }
 
@@ -38,7 +39,7 @@ public class streakTests {
         }
         gameScreen.setCurrentHour(24);
         gameScreen.setdayNum(7);
-        assertEquals(true,gameScreen.inStreaks("The Pizza Building"));
+        assertTrue(gameScreen.inStreaks("The Pizza Building"));
 
     }
 
@@ -52,7 +53,7 @@ public class streakTests {
         }
         gameScreen.setCurrentHour(24);
         gameScreen.setdayNum(7);
-        assertEquals(true,gameScreen.inStreaks("Hi,I'm Pepper"));
+        assertTrue(gameScreen.inStreaks("Hi,I'm Pepper"));
 
     }
 }
