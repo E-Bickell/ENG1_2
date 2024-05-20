@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.tomgrill.gdxtesting.Screens.TypingGameTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-05-20T11:43:28" hostname="LAPTOP-E8FM3GU7" time="0.015">
+  <properties/>
+  <testcase name="testGuessButton" classname="de.tomgrill.gdxtesting.Screens.TypingGameTest" time="0.015">
+    <failure message="java.lang.IllegalArgumentException: scaleX cannot be 0." type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: scaleX cannot be 0.
+	at com.badlogic.gdx.graphics.g2d.BitmapFont$BitmapFontData.setScale(BitmapFont.java:919)
+	at com.main.screens.TypingGame.calculateDimensions(TypingGame.java:67)
+	at com.main.screens.TypingGame.&lt;init&gt;(TypingGame.java:51)
+	at de.tomgrill.gdxtesting.Screens.TypingGameTest.&lt;init&gt;(TypingGameTest.java:14)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:250)
+	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:260)
+	at org.junit.runners.BlockJUnit4ClassRunner$2.runReflectiveCall(BlockJUnit4ClassRunner.java:309)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

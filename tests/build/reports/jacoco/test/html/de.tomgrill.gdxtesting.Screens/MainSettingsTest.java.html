@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainSettingsTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests</a> &gt; <a href="index.source.html" class="el_package">de.tomgrill.gdxtesting.Screens</a> &gt; <span class="el_source">MainSettingsTest.java</span></div><h1>MainSettingsTest.java</h1><pre class="source lang-java linenums">package de.tomgrill.gdxtesting.Screens;
+
+import com.main.Main;
+import com.main.screens.MainSettingsScreen;
+import de.tomgrill.gdxtesting.GdxTestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.assertTrue;
+
+@RunWith(GdxTestRunner.class)
+<span class="nc" id="L11">public class MainSettingsTest {</span>
+<span class="nc" id="L12">    Main game = new Main();</span>
+<span class="nc" id="L13">    MainSettingsScreen MainSettings = new MainSettingsScreen(game);</span>
+
+    @Test
+    public void testMusicDown() {
+<span class="nc" id="L17">        int x = (int)MainSettings.getMusicDownButtonX();</span>
+<span class="nc" id="L18">        int y = (int)MainSettings.getMusicDownButtonY();</span>
+<span class="nc" id="L19">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L20">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L21">    }</span>
+    @Test
+    public void testMusicUp() {
+<span class="nc" id="L24">        int x = (int)MainSettings.getMusicUpButtonX();</span>
+<span class="nc" id="L25">        int y = (int)MainSettings.getMusicUpButtonY();</span>
+<span class="nc" id="L26">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L27">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L28">    }</span>
+    @Test
+    public void testSoundDown() {
+<span class="nc" id="L31">        int x = (int)MainSettings.getSoundDownButtonX();</span>
+<span class="nc" id="L32">        int y = (int)MainSettings.getSoundDownButtonY();</span>
+<span class="nc" id="L33">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L34">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L35">    }</span>
+    @Test
+    public void testSoundUp() {
+<span class="nc" id="L38">        int x = (int)MainSettings.getSoundUpButtonX();</span>
+<span class="nc" id="L39">        int y = (int)MainSettings.getSoundUpButtonY();</span>
+<span class="nc" id="L40">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L41">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L42">    }</span>
+    @Test
+    public void testBackButton() {
+<span class="nc" id="L45">        int x = (int)MainSettings.getBackButtonX();</span>
+<span class="nc" id="L46">        int y = (int)MainSettings.getBackButtonY();</span>
+<span class="nc" id="L47">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L48">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L49">    }</span>
+    @Test
+    public void testBoyButton() {
+<span class="nc" id="L52">        int x = (int)MainSettings.getBoyButtonX();</span>
+<span class="nc" id="L53">        int y = (int)MainSettings.getBoyButtonY();</span>
+<span class="nc" id="L54">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L55">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L56">    }</span>
+    @Test
+    public void testGirlButton() {
+<span class="nc" id="L59">        int x = (int)MainSettings.getGirlButtonX();</span>
+<span class="nc" id="L60">        int y = (int)MainSettings.getGirlButtonY();</span>
+<span class="nc" id="L61">        boolean boolResult = MainSettings.touchDown(x,y,0,0);</span>
+<span class="nc" id="L62">        assertTrue(&quot;true&quot;, boolResult);</span>
+<span class="nc" id="L63">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

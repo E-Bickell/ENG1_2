@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SoundTests.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests</a> &gt; <a href="index.source.html" class="el_package">de.tomgrill.gdxtesting.Sound</a> &gt; <span class="el_source">SoundTests.java</span></div><h1>SoundTests.java</h1><pre class="source lang-java linenums">package de.tomgrill.gdxtesting.Sound;
+
+import com.badlogic.gdx.Gdx;
+import com.main.sound.GameSound;
+import de.tomgrill.gdxtesting.GdxTestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals ;
+import static org.junit.Assert.assertTrue;
+
+@RunWith(GdxTestRunner.class)
+<span class="nc" id="L12">public class SoundTests {</span>
+<span class="nc" id="L13">    GameSound gameSound = new GameSound();</span>
+
+    @Test
+    public void testSoundsExists() {
+<span class="nc" id="L17">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/high_note.mp3&quot;).exists());</span>
+<span class="nc" id="L18">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/low_note.mp3&quot;).exists());</span>
+<span class="nc" id="L19">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/button_press.mp3&quot;).exists());</span>
+<span class="nc" id="L20">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/eating_sound.wav&quot;).exists());</span>
+        //System.out.println(Gdx.files.internal(&quot;sfx/high_note.mp3&quot;));
+<span class="nc" id="L22">    }</span>
+    @Test
+    public void testVolume() {
+<span class="nc" id="L25">        gameSound.decrementVolume();</span>
+<span class="nc" id="L26">        gameSound.decrementVolume();</span>
+<span class="nc" id="L27">        gameSound.incrementVolume();</span>
+<span class="nc" id="L28">        assertEquals(3, gameSound.getSoundLevel());</span>
+<span class="nc" id="L29">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

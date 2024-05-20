@@ -19,10 +19,10 @@ public class CollisionHandlerTests {
     public void testMoveNoCollision(){
         /* 336, 800 --> 336, 640 **/
         /* 800, 1120 --> 800, 800 **/
-//        Vector2 v1 = new Vector2((float) 336, (float) 640);
-//        Vector2 v2 = new Vector2((float) 800, (float) 800);
-//        assertEquals(v1, collisionHandler.adjustPos(336, 800, 336, 640));
-//        assertEquals(v2, collisionHandler.adjustPos(800, 1120, 800, 800));
+        Vector2 v1 = new Vector2((float) 336, (float) 640);
+        Vector2 v2 = new Vector2((float) 800, (float) 800);
+        assertEquals(v1, collisionHandler.adjustPos(336, 800, 336, 640));
+        assertEquals(v2, collisionHandler.adjustPos(800, 1120, 800, 800));
     }
     @Test
     public void testMoveWithCollision(){
