@@ -841,13 +841,13 @@ public class MainGameScreen implements Screen, InputProcessor {
                             executeFadeOut(false);
                             showMenu = false;
                             lockMovement = fadeOut;
-//                            ArrayList<String> workedOut = new ArrayList<String>();
-//                            workedOut.add(String.valueOf(dayNum));
-//                            workedOut.add(popupMenuType);
-//                            recActivtities.add(workedOut);
-//                            if (duration == 4) {
-//                                recActivtities.add(workedOut);
-//                            }
+                           ArrayList<String> workedOut = new ArrayList<String>();
+                           workedOut.add(String.valueOf(dayNum));
+                           workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
                             energyCounter -= duration;
                             energyBar.dispose();
                             energyBar = setEnergyBar();
@@ -881,13 +881,13 @@ public class MainGameScreen implements Screen, InputProcessor {
                             executeFadeOut(false);
                             showMenu = false;
                             lockMovement = fadeOut;
-//                            ArrayList<String> workedOut = new ArrayList<String>();
-//                            workedOut.add(String.valueOf(dayNum));
-//                            workedOut.add(popupMenuType);
-//                            recActivtities.add(workedOut);
-//                            if (duration == 4) {
-//                                recActivtities.add(workedOut);
-//                            }
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
                             energyCounter -= duration;
                             energyBar.dispose();
                             energyBar = setEnergyBar();
@@ -923,13 +923,13 @@ public class MainGameScreen implements Screen, InputProcessor {
                             executeFadeOut(false);
                             showMenu = false;
                             lockMovement = fadeOut;
-//                            ArrayList<String> workedOut = new ArrayList<String>();
-//                            workedOut.add(String.valueOf(dayNum));
-//                            workedOut.add(popupMenuType);
-//                            recActivtities.add(workedOut);
-//                            if (duration == 4) {
-//                                recActivtities.add(workedOut);
-//                            }
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
                             energyCounter -= duration;
                             energyBar.dispose();
                             energyBar = setEnergyBar();
@@ -962,13 +962,13 @@ public class MainGameScreen implements Screen, InputProcessor {
                             executeFadeOut(false);
                             showMenu = false;
                             lockMovement = fadeOut;
-//                            ArrayList<String> workedOut = new ArrayList<String>();
-//                            workedOut.add(String.valueOf(dayNum));
-//                            workedOut.add(popupMenuType);
-//                            recActivtities.add(workedOut);
-//                            if (duration == 4) {
-//                                recActivtities.add(workedOut);
-//                            }
+                            ArrayList<String> workedOut = new ArrayList<String>();
+                            workedOut.add(String.valueOf(dayNum));
+                            workedOut.add(popupMenuType);
+                            recActivtities.add(workedOut);
+                            if (duration == 4) {
+                                recActivtities.add(workedOut);
+                            }
                             energyCounter -= duration;
                             energyBar.dispose();
                             energyBar = setEnergyBar();
