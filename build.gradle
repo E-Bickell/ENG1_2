@@ -49,6 +49,10 @@ allprojects {
 project(":core") {
     apply plugin: "java-library"
 
+    test{
+        workingDir= new File("/assets")
+    }
+
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"

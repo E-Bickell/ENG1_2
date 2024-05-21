@@ -17,6 +17,7 @@ import com.main.entity.Player;
 import com.main.map.GameMap;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.main.utils.CollisionHandler;
+import com.main.utils.ScoreUtils;
 import com.main.utils.ScreenType;
 import java.util.ArrayList;
 
@@ -57,11 +58,10 @@ public class MainGameScreen implements Screen, InputProcessor {
     private float durationTextY, menuTitleY, hoursLabelY;
     private float energyBarY, energyBarX, energyBarWidth, energyBarHeight;
     private String activity, popupMenuType;
-    private int energyCounter, duration, dayNum, currentHour,score;// recActivity, studyHours, mealCount,
+    private int energyCounter, duration, dayNum, currentHour;// recActivity, studyHours, mealCount,
     private float timeElapsed, fadeTime, minShade;
     private boolean fadeOut, lockTime, lockMovement, lockPopup, resetPos, popupVisible, showMenu;
-    private ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
-    private ArrayList<String> streaks;
+    private ScoreUtils score;
 
     /**
      * Constructs the main game screen with necessary game components.
@@ -99,10 +99,7 @@ public class MainGameScreen implements Screen, InputProcessor {
         this.fadeTime = 0;
         this.minShade = 0;
         this.fadeOut = this.lockTime = this.lockMovement = this.lockPopup = this.resetPos = this.popupVisible = this.showMenu = false;
-        this.recActivtities = new ArrayList<ArrayList<String>>();
-        this.meals = new ArrayList<ArrayList<String>>();
-        this.studyTimes = new ArrayList<ArrayList<String>>();
-        this.streaks=new ArrayList<String>();
+        this.score = new ScoreUtils();
 
         // Setting up the game
         this.camera = new OrthographicCamera();
@@ -185,23 +182,19 @@ public class MainGameScreen implements Screen, InputProcessor {
     }
 
     public void addStudyTimes(ArrayList<String> time){
-        studyTimes.add(time);
+        score.study(time);
     }
 
     public void addeatTimes(ArrayList<String> time){
-        meals.add(time);
+        score.eat(time);
     }
 
     public void addRecTimes(ArrayList<String> time){
-        recActivtities.add(time);
-    }
-
-    public int getScore() {
-        return score;
+        score.addRecActivtity(time);
     }
     
     public boolean inStreaks(String name){
-        return(this.streaks.contains(name));
+        return(this.score.getStreaks().contains(name));
     }
 
     @Override
@@ -519,8 +512,8 @@ public class MainGameScreen implements Screen, InputProcessor {
      * Renders the UI elements of the game.
      */
     private void drawUIElements() {
-        String counterString = String.format("Recreation Activities done: " + recActivtities.size() + "\nTimes Studied: "
-                + studyTimes.size() + "\nMeals Eaten: " + meals.size(), dayNum, timeElapsed);
+        String counterString = String.format("Recreation Activities done: " + score.getRecTimes().size() + "\nTimes Studied: "
+                + score.getStudyTimes().size() + "\nMeals Eaten: " + score.getMealTimes().size(), dayNum, timeElapsed);
         game.batch.setProjectionMatrix(game.defaultCamera.combined);
         if (showMenu)
             drawDurationMenu();
@@ -538,100 +531,9 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     private void endGame(){
         //recActivtities, studyTimes, meals;
-        score = 0;
-        // studying related
-        boolean diffLocation=false;
-        String firstLocation=studyTimes.get(0).get(1);
-        int dayCheck=1;
-        for(int i=0;i<studyTimes.size();i++){
-            score=score+5;
-            if(firstLocation != studyTimes.get(i).get(1) && !diffLocation){
-                score+=5;
-                diffLocation=true;
-            }
-            if(Integer.valueOf(studyTimes.get(i).get(0))==dayCheck){
-                score++;
-                dayCheck++;
-            }
-            else if(Integer.valueOf(studyTimes.get(i).get(0))>dayCheck ){
-                dayCheck=Integer.valueOf(studyTimes.get(i).get(0));
-            }
-        }
-        if(studyTimes.size()>7&&studyTimes.size()<11){
-            score+=5;
-        }
-        else if(studyTimes.size()>15){score-=15;}
-        else if(studyTimes.size()>10){score-=5;}
-
-        //eating regularly
-        dayCheck=1;
-        int timeEatenToday=0;
-        for (int i=0;i<meals.size();i++){
-            if(Integer.valueOf(meals.get(i).get(0))==dayCheck){
-                timeEatenToday++;
-            }
-
-            if (Integer.valueOf(meals.get(i).get(0))>dayCheck){
-                if (timeEatenToday>2){
-                    score+=3;
-                }
-                int difference=Integer.valueOf(meals.get(i).get(0))-dayCheck+1;
-                score-=3+difference;
-                dayCheck=Integer.valueOf(meals.get(i).get(0));
-                timeEatenToday=1;
-            }
-
-        }
-
-        //recreation score
-        if (recActivtities.size()<11){
-            score+=recActivtities.size();
-        }
-        else{
-            score+=10;
-        }
-        //streaks
-
-        int gymVisits=0;
-        for (int i=0;i<recActivtities.size();i++){
-            if(recActivtities.get(i).get(1)=="Gym_door"){
-                gymVisits+=1;
-            }
-        }
-        if(gymVisits>9){
-            score+=5;
-            streaks.add("Gym Rat");
-        }
-        int compSciVisits=0;
-        int piazzaStudies=0;
-        for (int i=0;i<studyTimes.size();i++){
-            if(studyTimes.get(i).get(1)=="Comp_sci_door"){
-                compSciVisits+=1;
-            }
-            if(studyTimes.get(i).get(1)=="Piazza_door"){
-                piazzaStudies+=1;
-            }
-        }
-        if(compSciVisits>9){
-            score+=5;
-            streaks.add("Hi,I'm Pepper");
-        }
-        if(piazzaStudies>9){
-            score+=5;
-            streaks.add("The Pizza Building");
-        }
-
-
-
-        //neaten score
-        if (score>100){
-            score=100;
-        }
-        if(score<0){
-            score=0;
-        }
-
-        game.screenManager.setScreen(ScreenType.END_SCREEN,score,streaks);
+        int finalScore = score.calculateFinalScore();
+        ArrayList<String> streaks = score.getStreaks();
+        game.screenManager.setScreen(ScreenType.END_SCREEN,finalScore,streaks);
     }
 
     /**
@@ -746,10 +648,10 @@ public class MainGameScreen implements Screen, InputProcessor {
                         ArrayList<String> studied = new ArrayList<String>();
                         studied.add(String.valueOf(dayNum));
                         studied.add(popupMenuType);
-                        studyTimes.add(studied);
+                        score.study(studied);
                         if (duration == 6)
                         {
-                            studyTimes.add(studied);
+                            score.study(studied);
                         }
                         if (energyCounter > (duration + 1) / 2)
                             energyCounter -= (duration + 1) / 2;
@@ -796,9 +698,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                             ArrayList<String> workedOut = new ArrayList<String>();
                             workedOut.add(String.valueOf(dayNum));
                             workedOut.add(popupMenuType);
-                            recActivtities.add(workedOut);
+                            score.addRecActivtity(workedOut);
                             if (duration == 4) {
-                                recActivtities.add(workedOut);
+                                score.addRecActivtity(workedOut);
                             }
                             energyCounter -= duration;
                             energyBar.dispose();
@@ -844,9 +746,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                            ArrayList<String> workedOut = new ArrayList<String>();
                            workedOut.add(String.valueOf(dayNum));
                            workedOut.add(popupMenuType);
-                            recActivtities.add(workedOut);
+                            score.addRecActivtity(workedOut);
                             if (duration == 4) {
-                                recActivtities.add(workedOut);
+                                score.addRecActivtity(workedOut);
                             }
                             energyCounter -= duration;
                             energyBar.dispose();
@@ -884,9 +786,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                             ArrayList<String> workedOut = new ArrayList<String>();
                             workedOut.add(String.valueOf(dayNum));
                             workedOut.add(popupMenuType);
-                            recActivtities.add(workedOut);
+                            score.addRecActivtity(workedOut);
                             if (duration == 4) {
-                                recActivtities.add(workedOut);
+                                score.addRecActivtity(workedOut);
                             }
                             energyCounter -= duration;
                             energyBar.dispose();
@@ -926,9 +828,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                             ArrayList<String> workedOut = new ArrayList<String>();
                             workedOut.add(String.valueOf(dayNum));
                             workedOut.add(popupMenuType);
-                            recActivtities.add(workedOut);
+                            score.addRecActivtity(workedOut);
                             if (duration == 4) {
-                                recActivtities.add(workedOut);
+                                score.addRecActivtity(workedOut);
                             }
                             energyCounter -= duration;
                             energyBar.dispose();
@@ -965,9 +867,9 @@ public class MainGameScreen implements Screen, InputProcessor {
                             ArrayList<String> workedOut = new ArrayList<String>();
                             workedOut.add(String.valueOf(dayNum));
                             workedOut.add(popupMenuType);
-                            recActivtities.add(workedOut);
+                            score.addRecActivtity(workedOut);
                             if (duration == 4) {
-                                recActivtities.add(workedOut);
+                                score.addRecActivtity(workedOut);
                             }
                             energyCounter -= duration;
                             energyBar.dispose();
@@ -1039,7 +941,7 @@ public class MainGameScreen implements Screen, InputProcessor {
                         ArrayList<String> meal = new ArrayList<String>();
                         meal.add(String.valueOf(dayNum));
                         meal.add(popupMenuType);
-                        meals.add(meal);
+                        score.eat(meal);
                         if (energyCounter > 10)
                             energyCounter = 10;
                         energyBar.dispose();

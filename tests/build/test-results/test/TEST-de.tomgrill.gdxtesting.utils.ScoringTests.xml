@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.tomgrill.gdxtesting.utils.ScoringTests" tests="2" skipped="0" failures="2" errors="0" timestamp="2024-05-20T11:43:28" hostname="LAPTOP-E8FM3GU7" time="0.297">
+<testsuite name="de.tomgrill.gdxtesting.utils.ScoringTests" tests="2" skipped="0" failures="1" errors="0" timestamp="2024-05-21T17:58:23" hostname="LAPTOP-E8FM3GU7" time="0.04">
   <properties/>
-  <testcase name="testPerfect" classname="de.tomgrill.gdxtesting.utils.ScoringTests" time="0.147">
-    <failure message="java.lang.IllegalArgumentException: Error compiling shader: " type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Error compiling shader: 
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.createDefaultShader(SpriteBatch.java:164)
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.&lt;init&gt;(SpriteBatch.java:127)
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.&lt;init&gt;(SpriteBatch.java:81)
-	at com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer.&lt;init&gt;(BatchTiledMapRenderer.java:102)
-	at com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer.&lt;init&gt;(BatchTiledMapRenderer.java:95)
-	at com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer.&lt;init&gt;(OrthogonalTiledMapRenderer.java:51)
-	at com.main.map.GameMap.&lt;init&gt;(GameMap.java:35)
-	at com.main.screens.MainGameScreen.&lt;init&gt;(MainGameScreen.java:109)
-	at de.tomgrill.gdxtesting.utils.ScoringTests.&lt;init&gt;(ScoringTests.java:17)
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:250)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:260)
-	at org.junit.runners.BlockJUnit4ClassRunner$2.runReflectiveCall(BlockJUnit4ClassRunner.java:309)
+  <testcase name="testPerfect" classname="de.tomgrill.gdxtesting.utils.ScoringTests" time="0.021">
+    <failure message="java.lang.AssertionError: expected:&lt;0&gt; but was:&lt;96&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;0&gt; but was:&lt;96&gt;
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at de.tomgrill.gdxtesting.utils.ScoringTests.testPerfect(ScoringTests.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:306)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
@@ -28,33 +23,7 @@
 	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
 </failure>
   </testcase>
-  <testcase name="testNoActions" classname="de.tomgrill.gdxtesting.utils.ScoringTests" time="0.15">
-    <failure message="java.lang.IllegalArgumentException: Error compiling shader: " type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: Error compiling shader: 
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.createDefaultShader(SpriteBatch.java:164)
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.&lt;init&gt;(SpriteBatch.java:127)
-	at com.badlogic.gdx.graphics.g2d.SpriteBatch.&lt;init&gt;(SpriteBatch.java:81)
-	at com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer.&lt;init&gt;(BatchTiledMapRenderer.java:102)
-	at com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer.&lt;init&gt;(BatchTiledMapRenderer.java:95)
-	at com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer.&lt;init&gt;(OrthogonalTiledMapRenderer.java:51)
-	at com.main.map.GameMap.&lt;init&gt;(GameMap.java:35)
-	at com.main.screens.MainGameScreen.&lt;init&gt;(MainGameScreen.java:109)
-	at de.tomgrill.gdxtesting.utils.ScoringTests.&lt;init&gt;(ScoringTests.java:17)
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:250)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:260)
-	at org.junit.runners.BlockJUnit4ClassRunner$2.runReflectiveCall(BlockJUnit4ClassRunner.java:309)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
-	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
-	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
-</failure>
-  </testcase>
+  <testcase name="testNoActions" classname="de.tomgrill.gdxtesting.utils.ScoringTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
