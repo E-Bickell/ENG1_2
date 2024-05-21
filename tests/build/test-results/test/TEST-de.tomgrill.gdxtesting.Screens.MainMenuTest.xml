@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.tomgrill.gdxtesting.Screens.MainMenuTest" tests="4" skipped="0" failures="4" errors="0" timestamp="2024-05-21T23:41:14" hostname="DESKTOP-JE03C92" time="0.075">
+  <properties/>
+  <testcase name="testExitButton" classname="de.tomgrill.gdxtesting.Screens.MainMenuTest" time="0.016">
+    <failure message="java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null
+	at com.main.screens.MainMenuScreen.touchDown(MainMenuScreen.java:149)
+	at de.tomgrill.gdxtesting.Screens.MainMenuTest.testExitButton(MainMenuTest.java:34)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
+</failure>
+  </testcase>
+  <testcase name="testPlayButton" classname="de.tomgrill.gdxtesting.Screens.MainMenuTest" time="0.005">
+    <failure message="java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null
+	at com.main.screens.MainMenuScreen.touchDown(MainMenuScreen.java:149)
+	at de.tomgrill.gdxtesting.Screens.MainMenuTest.testPlayButton(MainMenuTest.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
+</failure>
+  </testcase>
+  <testcase name="testSettingsButton" classname="de.tomgrill.gdxtesting.Screens.MainMenuTest" time="0.011">
+    <failure message="java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null
+	at com.main.screens.MainMenuScreen.touchDown(MainMenuScreen.java:149)
+	at de.tomgrill.gdxtesting.Screens.MainMenuTest.testSettingsButton(MainMenuTest.java:52)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
+</failure>
+  </testcase>
+  <testcase name="testControlsButton" classname="de.tomgrill.gdxtesting.Screens.MainMenuTest" time="0.007">
+    <failure message="java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;com.main.utils.GameData.buttonClickedSoundActivate()&quot; because &quot;this.game.gameData&quot; is null
+	at com.main.screens.MainMenuScreen.touchDown(MainMenuScreen.java:149)
+	at de.tomgrill.gdxtesting.Screens.MainMenuTest.testControlsButton(MainMenuTest.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at de.tomgrill.gdxtesting.GdxTestRunner.render(GdxTestRunner.java:62)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication.mainLoop(HeadlessApplication.java:128)
+	at com.badlogic.gdx.backends.headless.HeadlessApplication$1.run(HeadlessApplication.java:93)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

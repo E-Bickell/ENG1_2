@@ -5,12 +5,15 @@ import java.util.ArrayList;
 public class ScoreUtils {
     ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
     private ArrayList<String> streaks;
+    int piazzaStudies;
 
     public ScoreUtils(){
         this.recActivtities = new ArrayList<ArrayList<String>>();
         this.meals = new ArrayList<ArrayList<String>>();
         this.studyTimes = new ArrayList<ArrayList<String>>();
         this.streaks=new ArrayList<String>();
+        this.piazzaStudies=0;
+        
     }
 
     public void study(ArrayList<String> time){
@@ -25,13 +28,13 @@ public class ScoreUtils {
     public int calculateFinalScore(){
         int score = 0;
         // studying related
-        boolean diffLocation=false;
-        int dayCheck = 1;
-        boolean noneOfType = false;
+         boolean diffLocation=false;
+         int dayCheck = 1;
+         boolean noneOfType = false;
         try {
             String firstLocation = studyTimes.get(0).get(1);
+            score+=studyTimes.size()*5;
             for (int i = 0; i < studyTimes.size(); i++) {
-                score = score + 5;
                 if (firstLocation != studyTimes.get(i).get(1) && !diffLocation) {
                     score += 5;
                     diffLocation = true;
@@ -53,38 +56,25 @@ public class ScoreUtils {
         }
         catch (Exception e) {
             noneOfType = true;
-        }
+       }
         //eating regularly
-        dayCheck=1;
-        int timeEatenToday=0;
-        try {
-            for (int i = 0; i < meals.size(); i++) {
-                if (Integer.valueOf(meals.get(i).get(0)) == dayCheck) {
-                    timeEatenToday++;
-                }
-
-                if (Integer.valueOf(meals.get(i).get(0)) > dayCheck) {
-                    if (timeEatenToday > 2) {
-                        score += 3;
-                    }
-                    int difference = Integer.valueOf(meals.get(i).get(0)) - dayCheck + 1;
-                    score -= 3 + difference;
-                    dayCheck = Integer.valueOf(meals.get(i).get(0));
-                    timeEatenToday = 1;
-                }
-
-            }
-        }
-        catch (Exception e) {
-            noneOfType = true;
-        }
+       try {
+           int perDay=meals.size()/7;
+           if(perDay>2){
+               score+=14;
+          }
+        
+       }
+       catch (Exception e) {
+           noneOfType = true;
+       }
 
         //recreation score
-        if (recActivtities.size()<11){
-            score+=recActivtities.size();
-        }
-        else{
-            score+=10;
+         if (recActivtities.size()<11){
+             score+=recActivtities.size();
+         }
+         else{
+             score+=10;
         }
         //streaks
         if (!recActivtities.isEmpty()) {
@@ -101,12 +91,13 @@ public class ScoreUtils {
             int compSciVisits = 0;
             int piazzaStudies = 0;
             for (int i = 0; i < studyTimes.size(); i++) {
-                if (studyTimes.get(i).get(1) == "Comp_sci_door") {
-                    compSciVisits += 1;
-                }
+                 if (studyTimes.get(i).get(1) == "Comp_sci_door") {
+                     compSciVisits += 1;
+                 }
                 if (studyTimes.get(i).get(1) == "Piazza_door") {
-                    piazzaStudies += 1;
-                }
+                     piazzaStudies += 1;
+                 }
+                
             }
             if (compSciVisits > 9) {
                 score += 5;
@@ -145,5 +136,8 @@ public class ScoreUtils {
     }
     public ArrayList<ArrayList<String>> getRecTimes(){
         return recActivtities;
+    }
+    public int getpizzastreak(){
+        return(piazzaStudies);
     }
 }

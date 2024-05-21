@@ -35,19 +35,22 @@ public class ScoringTests {
         score.eat(eaten);
         score.eat(eaten);
         score.eat(eaten);
-        score.eat(eaten);
-        score.eat(eaten);
+        score.addRecActivtity(eaten);
+        score.addRecActivtity(eaten);
+        score.addRecActivtity(eaten);
+        score.addRecActivtity(eaten);
         for (int i=1;i<8;i++){
             studied.add(0,Integer.toString(i));
-
             score.study(studied);
             eaten.add(0,Integer.toString(i));
             score.eat(eaten);
             score.eat(eaten);
             score.eat(eaten);
+            score.addRecActivtity(eaten);
         }
-        assertEquals(score.calculateFinalScore(),96);
-
+    
+        assertEquals("added score = "+Integer.toString(score.calculateFinalScore()),score.calculateFinalScore(),80);
+  
     }
 }
 
