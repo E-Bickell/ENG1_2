@@ -6,7 +6,6 @@ public class ScoreUtils {
     ArrayList<ArrayList<String>> recActivtities, studyTimes, meals;
     private ArrayList<String> streaks;
     int piazzaStudies;
-
     /** Constructs ScoreUtils - new code
      */
     public ScoreUtils(){

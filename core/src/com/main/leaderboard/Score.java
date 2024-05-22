@@ -1,5 +1,5 @@
 package com.main.leaderboard;
-
+//new code
 public class Score {
     private String name;
     private int score;

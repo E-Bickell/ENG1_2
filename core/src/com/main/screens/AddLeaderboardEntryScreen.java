@@ -14,7 +14,7 @@ import com.main.utils.LeaderboardUtils;
 import com.main.utils.ScreenType;
 
 import java.util.ArrayList;
-
+//new code
 public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
     Main game;
     int score;

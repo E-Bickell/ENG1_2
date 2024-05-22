@@ -172,7 +172,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     public float getActivityButtonX() {return activityButtonX;}
     public float getDurationMenuButtonY() {return durationMenuButtonY;}
 
-    // testing getter and setters
+    // testing getter and setters- new code
     public void setdayNum(int newNum){
         dayNum=newNum;
     }
@@ -218,7 +218,7 @@ public class MainGameScreen implements Screen, InputProcessor {
     }
 
     /**
-     * Identifies which door, if any, the player is currently touching.
+     * Identifies which door, if any, the player is currently touching.- bottom 4 new
      * 
      * @return The name of the door the player is touching or an empty string if
      *         none.
