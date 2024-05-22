@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.tomgrill.gdxtesting.utils.LeaderboardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-05-22T15:56:00" hostname="LAPTOP-E8FM3GU7" time="0.135">
+  <properties/>
+  <testcase name="checkWriteToLeaderboard" classname="de.tomgrill.gdxtesting.utils.LeaderboardTests" time="0.095"/>
+  <testcase name="checkSort" classname="de.tomgrill.gdxtesting.utils.LeaderboardTests" time="0.005"/>
+  <testcase name="LeaderboardExists" classname="de.tomgrill.gdxtesting.utils.LeaderboardTests" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
