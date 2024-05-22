@@ -32,9 +32,22 @@ jobs:
 
     # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
+    - name: Build with Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      with:
+         arguments: build jacocoTestReport
+         
+    - name: Upload JaCoCo coverage report as a workflow artifact
+      uses: actions/upload-artifact@v3.1.1
+      with:
+       name: jacoco-report
+       path: build/reports/jacoco/test/html  
 
+    - name: Upload library JAR
+      uses: actions/upload-artifact@v3.1.1
+      with:
+       name: lib.jar
+       path: build/libs/lib.jar
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
