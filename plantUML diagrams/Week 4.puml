@@ -15,6 +15,7 @@ hide resources footbox
 [Leaderboard tests] on {Isaac} lasts 21 days
 [Streaks and scoring tests] on {Eleanor} lasts 21 days
 [Extra Areas tests] on {Alex} lasts 21 days
+[Test Report] on {All} lasts 28 days
 -- Continuous Integration --
 [Continuous Integration] on {Eleanor} lasts 14 days
 -- Implementation --
@@ -38,6 +39,7 @@ then [User Evaluation] on {Olivia, Donovan, Robbie} lasts 4 days
 [Leaderboard tests] is colored in Yellow/Black
 [Streaks and scoring tests] is colored in Yellow/Black
 [Extra Areas tests] is colored in Yellow/Black
+[Test Report] is colored in Yellow/Black
 
 [Continuous Integration] is colored in Pink/Black
 
@@ -63,6 +65,7 @@ Project starts 2024-04-19
 [Leaderboard tests] starts 2024-04-26
 [Streaks and scoring tests] starts 2024-04-26
 [Extra Areas tests] starts 2024-04-26
+[Test Report] starts 2024-04-19
 
 [Continuous Integration] starts at 2024-04-26
 
