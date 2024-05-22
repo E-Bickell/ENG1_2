@@ -56,10 +56,6 @@ public class TypingGame implements Screen, InputProcessor {
         playGame();
     }
 
-    /**
-     * Begins a new challenge by generating a number for the player to memorize.
-     * Handles the logic for correct and incorrect guesses and progresses the game.
-     */
     private void calculateDimensions() {
         displayText.getData().setScale(3f * game.scaleFactorX, 3f * game.scaleFactorY);
         displayTextHeight = 100 * game.scaleFactorY;
@@ -81,6 +77,7 @@ public class TypingGame implements Screen, InputProcessor {
     /**
      * Begins a new challenge by generating a number for the player to memorize.
      * Handles the logic for correct and incorrect guesses and progresses the game.
+     * Adjusted to move some code to TypingGameUtils
      */
     public void playGame() {
         typeUtils.resetGame();

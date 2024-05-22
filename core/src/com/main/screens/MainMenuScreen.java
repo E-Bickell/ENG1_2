@@ -8,6 +8,8 @@ import com.main.Main;
 import com.badlogic.gdx.InputProcessor;
 import com.main.utils.ScreenType;
 
+import java.util.ArrayList;
+
 /**
  * The MainMenuScreen class represents the main menu screen for the game.
  * It handles the display and interaction with the main menu, including navigating to different parts of the game

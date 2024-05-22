@@ -25,6 +25,11 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
     BitmapFont font;
     ArrayList<Score> leaderboard;
 
+    /**
+     * Constructs an Add leaderboard Entry screen with the game instance.
+     *
+     * @param game          The main game instance.
+     */
     public AddLeaderboardEntryScreen(Main game, int score){
         this.game = game;
         this.score = score;
@@ -36,6 +41,9 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
         calculatePositions();
     }
 
+    /**
+     * Loads textures for UI elements from the assets directory.
+     */
     private void loadAssets(){
         font = new BitmapFont(Gdx.files.internal("font/WhitePeaberry.fnt"));
         font.setColor(Color.BLACK);
@@ -45,6 +53,9 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
         nameBack = new Texture("add_to_leaderboard_gui/Name_Tag_Base.png");
     }
 
+    /**
+     * Calculates the dimensions of the textures.
+     */
     private void calculateDimensions(){
         enterButtonWidth = 200 * game.scaleFactorX;
         enterButtonHeight = 100 * game.scaleFactorY;
@@ -56,6 +67,9 @@ public class AddLeaderboardEntryScreen implements Screen, InputProcessor {
         nameHeight = nameBack.getHeight() * 5 * game.scaleFactorY;
     }
 
+    /**
+     * Calculates the positions of the textures to be drawn on screen.
+     */
     private void calculatePositions(){
         enterButtonX = (game.screenWidth - enterButtonWidth) / 2;
         enterButtonY = (float) game.screenHeight / 6 + (50 * game.scaleFactorY);

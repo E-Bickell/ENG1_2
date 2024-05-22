@@ -18,19 +18,21 @@ public class EndScreen implements Screen, InputProcessor {
     Main game;
     Texture playAgainButton, exitButton;
     BitmapFont font;
-    String titleText;
+    BitmapFont streakFont;
+    String titleText, streakText;
     int score;
     float playAgainButtonY, exitButtonY;
     float buttonX, buttonWidth, buttonHeight;
-    float titleY;
+    float titleY, streakX, streakY;
     boolean exitFlag;
     public EndScreen(Main game,int score,ArrayList<String> streaks){
         this.game = game;
         this.score = score;
-        titleText = "The End \n Score: "+String.valueOf(this.score)+"\n Streaks:";
-    
+        titleText = "The End \n Score: "+String.valueOf(this.score);
+
+        streakText = "Streaks:";
         for (int i=0;i<streaks.size();i++){
-            titleText+="\n"+streaks.get(i);
+            streakText+="\n"+streaks.get(i);
         }
         loadAssets();
         calculateDimensions();
@@ -41,18 +43,20 @@ public class EndScreen implements Screen, InputProcessor {
         playAgainButton = new Texture("end_gui/play_button.png");
         exitButton = new Texture("end_gui/exit_button.png");
         font = new BitmapFont(Gdx.files.internal("font/WhitePeaberry.fnt"));
+        streakFont = new BitmapFont(Gdx.files.internal("font/WhitePeaberry.fnt"));
     }
 
     private void calculateDimensions(){
         buttonWidth = playAgainButton.getWidth() * 10 * game.scaleFactorX;
         buttonHeight = playAgainButton.getHeight() * 10 * game.scaleFactorY;
         font.getData().setScale(5.5f * game.scaleFactorX, 5.5f * game.scaleFactorY);
+        streakFont.getData().setScale(2f * game.scaleFactorX, 2f * game.scaleFactorY);
     }
 
     private void calculatePositions(){
         buttonX = (game.screenWidth - buttonWidth)/2f;
-        playAgainButtonY = game.screenHeight - buttonHeight * 4.5f;
-        exitButtonY = game.screenHeight - buttonHeight * 6f;
+        playAgainButtonY = game.screenHeight - buttonHeight * 5.5f;
+        exitButtonY = game.screenHeight - buttonHeight * 7f;
         titleY = game.screenHeight - 120f * game.scaleFactorY;
     }
 
@@ -74,6 +78,7 @@ public class EndScreen implements Screen, InputProcessor {
         game.batch.setProjectionMatrix(game.defaultCamera.combined);
         game.batch.begin();
         font.draw(game.batch, titleText, 0, titleY, game.screenWidth, Align.center, false);
+        streakFont.draw(game.batch, streakText, 0,titleY, game.screenWidth, Align.left, false);
         game.batch.draw(playAgainButton, buttonX, playAgainButtonY, buttonWidth, buttonHeight);
         game.batch.draw(exitButton, buttonX, exitButtonY, buttonWidth, buttonHeight);
         game.batch.end();

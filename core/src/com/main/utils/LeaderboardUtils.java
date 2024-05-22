@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class LeaderboardUtils {
+    /**
+     * Loads the leaderboard file from a JSON - new code.
+     *
+     * @param filename The names of the JSON to load.
+     * @return ArrayList the loaded leaderboard
+     */
     public static ArrayList<Score> LoadLeaderboard(String filename){
         Json json = new Json();
         FileHandle lbFile = Gdx.files.local(filename);
@@ -19,6 +25,14 @@ public class LeaderboardUtils {
         return loadedLeaderboard.getScores();
     }
 
+    /**
+     * Write a new value to the JSON - new code.
+     *
+     * @param leaderboard The existing leaderboard
+     * @param name The name of the new entry
+     * @param score The score that is wanted to be added
+     * @param filename The names of the JSON to load.
+     */
     public static void writeToLeaderboard(ArrayList<Score> leaderboard, String name, int score, String filename) {
         Json json = new Json();
         Score playerScore = new Score();
@@ -31,6 +45,12 @@ public class LeaderboardUtils {
         lbFile.writeString(json.toJson(loadedLeaderboard), false);
     }
 
+    /**
+     * Sorts the leaderboard - new code.
+     *
+     * @param leaderboard The leaderboard to be sorted
+     * @return ArrayList The sorted leaderboard
+     */
     public static ArrayList<Score> sortLeaderboard(ArrayList<Score> leaderboard){
         Comparator<Score> comp = new Comparator<Score>() {
             @Override

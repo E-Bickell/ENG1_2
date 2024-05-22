@@ -527,7 +527,9 @@ public class MainGameScreen implements Screen, InputProcessor {
         game.batch.end();
     }
 
-    /** Calculates the final score, and takes you to the end screen*/
+    /** Calculates the final score, and takes you to the end screen
+     * Adjusted to move things to ScoreUtils
+     */
 
     private void endGame(){
         //recActivtities, studyTimes, meals;
@@ -538,6 +540,7 @@ public class MainGameScreen implements Screen, InputProcessor {
 
     /**
      * Updates the game time and handles the transition from day to night.
+     * Updated to fix critical bug
      *
      * @param delta The time elapsed since the last frame.
      */

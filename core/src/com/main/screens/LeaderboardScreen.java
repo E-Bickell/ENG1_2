@@ -26,6 +26,12 @@ public class LeaderboardScreen implements Screen, InputProcessor {
     private float backButtonWidth, backButtonHeight, leaderboardLabelWidth, leaderboardLabelHeight, positionWidth, positionHeight, nameWidth, nameHeight, scoreWidth, scoreHeight;
     FileHandle lbFile;
     ArrayList<Score> leaderboard;
+
+    /**
+     * Constructs a Leaderboard screen with the game instance.
+     *
+     * @param game          The main game instance.
+     */
     public LeaderboardScreen(Main game){
         this.game = game;
 
@@ -37,6 +43,9 @@ public class LeaderboardScreen implements Screen, InputProcessor {
         calculatePositions();
     }
 
+    /**
+     * Loads textures for UI elements from the assets directory.
+     */
     private void loadAssets(){
         font = new BitmapFont(Gdx.files.internal("font/WhitePeaberry.fnt"));
         font.setColor(Color.BLACK);
@@ -47,6 +56,9 @@ public class LeaderboardScreen implements Screen, InputProcessor {
         backButton = new Texture(Gdx.files.internal("leaderboard_gui/back_button.png"));
     }
 
+    /**
+     * Calculates the dimensions of the textures.
+     */
     private void calculateDimensions(){
         font.getData().setScale(1.5f * game.scaleFactorX, 1.5f * game.scaleFactorY);
         backButtonWidth = 200 * game.scaleFactorX;
@@ -61,6 +73,9 @@ public class LeaderboardScreen implements Screen, InputProcessor {
         scoreHeight = scoreBack.getHeight() * 5 * game.scaleFactorY;
     }
 
+    /**
+     * Calculates the positions of the textures to be drawn on screen.
+     */
     private void calculatePositions(){
         backButtonX = (game.screenWidth - backButtonWidth) / 2;
         backButtonY = (float) game.screenHeight / 6 - (100 * game.scaleFactorY);

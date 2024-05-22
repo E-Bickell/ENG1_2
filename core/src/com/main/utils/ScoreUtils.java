@@ -7,6 +7,8 @@ public class ScoreUtils {
     private ArrayList<String> streaks;
     int piazzaStudies;
 
+    /** Constructs ScoreUtils - new code
+     */
     public ScoreUtils(){
         this.recActivtities = new ArrayList<ArrayList<String>>();
         this.meals = new ArrayList<ArrayList<String>>();
@@ -16,15 +18,30 @@ public class ScoreUtils {
         
     }
 
+    /** Adds a new study time - new code
+     * @param time the time and place studied
+     */
     public void study(ArrayList<String> time){
         studyTimes.add(time);
     }
+
+    /** Adds a new recreational Activity time - new code
+     * @param time the time and place the activity took place
+     */
     public void addRecActivtity(ArrayList<String> time){
         recActivtities.add(time);
     }
+
+    /** Adds a new eat time - new code
+     * @param time the time and place that the player ate
+     */
     public void eat(ArrayList<String> time){
         meals.add(time);
     }
+
+    /** Calculates the final score - new code
+     * @return int score
+     */
     public int calculateFinalScore(){
         int score = 0;
         // studying related
@@ -125,18 +142,34 @@ public class ScoreUtils {
         return score;
     }
 
+    /** Returns the streaks - new code
+     * @return ArrayList streaks
+     */
     public ArrayList<String> getStreaks(){
         return streaks;
     }
+
+    /** Returns the study information - new code
+     * @return ArrayList studyTimes
+     */
     public ArrayList<ArrayList<String>> getStudyTimes(){
         return studyTimes;
     }
+
+    /** Returns the meal times - new code
+     * @return ArrayList meals
+     */
     public ArrayList<ArrayList<String>> getMealTimes(){
         return meals;
     }
+
+    /** Returns the recreational activity times - new code
+     * @return ArrayList recActivities
+     */
     public ArrayList<ArrayList<String>> getRecTimes(){
         return recActivtities;
     }
+
     public int getpizzastreak(){
         return(piazzaStudies);
     }
