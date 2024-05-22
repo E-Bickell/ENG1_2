@@ -88,16 +88,18 @@ public class ScoreUtils {
                 score += 5;
                 streaks.add("Gym Rat");
             }
+        }
+        if (!studyTimes.isEmpty()) {
             int compSciVisits = 0;
             int piazzaStudies = 0;
             for (int i = 0; i < studyTimes.size(); i++) {
-                 if (studyTimes.get(i).get(1) == "Comp_sci_door") {
-                     compSciVisits += 1;
-                 }
+                if (studyTimes.get(i).get(1) == "Comp_sci_door") {
+                    compSciVisits += 1;
+                }
                 if (studyTimes.get(i).get(1) == "Piazza_door") {
-                     piazzaStudies += 1;
-                 }
-                
+                    piazzaStudies += 1;
+                }
+
             }
             if (compSciVisits > 9) {
                 score += 5;
@@ -107,8 +109,6 @@ public class ScoreUtils {
                 score += 5;
                 streaks.add("The Pizza Building");
             }
-        } else {
-            noneOfType = true;
         }
         if (noneOfType){
             score = 0;
