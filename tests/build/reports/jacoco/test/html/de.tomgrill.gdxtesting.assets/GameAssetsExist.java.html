@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameAssetsExist.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests</a> &gt; <a href="index.source.html" class="el_package">de.tomgrill.gdxtesting.assets</a> &gt; <span class="el_source">GameAssetsExist.java</span></div><h1>GameAssetsExist.java</h1><pre class="source lang-java linenums">package de.tomgrill.gdxtesting.assets;
+
+import com.badlogic.gdx.Gdx;
+import de.tomgrill.gdxtesting.GdxTestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertTrue;
+
+@RunWith(GdxTestRunner.class)
+<span class="nc" id="L11">public class GameAssetsExist {</span>
+    @Test
+    public void BoyCharacterAssetsExist(){
+<span class="nc" id="L14">        assertTrue(&quot;Boy Character Idle Exists&quot;, Gdx.files.internal(&quot;character/boy_idle.png&quot;).exists());</span>
+<span class="nc" id="L15">        assertTrue(&quot;Boy Character Walk Exists&quot;, Gdx.files.internal(&quot;character/boy_walk.png&quot;).exists());</span>
+<span class="nc" id="L16">    }</span>
+    @Test
+    public void GirlCharacterAssetsExist(){
+<span class="nc" id="L19">        assertTrue(&quot;Girl Character Idle Exists&quot;, Gdx.files.internal(&quot;character/girl_idle.png&quot;).exists());</span>
+<span class="nc" id="L20">        assertTrue(&quot;Girl Character Walk Exists&quot;, Gdx.files.internal(&quot;character/girl_walk.png&quot;).exists());</span>
+<span class="nc" id="L21">    }</span>
+    @Test
+    public void mapExists() {
+<span class="nc" id="L24">        assertTrue(&quot;Map Exists&quot;, Gdx.files.internal(&quot;map/MainMap.tmx&quot;).exists());</span>
+<span class="nc" id="L25">    }</span>
+    @Test
+    public void TypingGameAssetsExist() {
+<span class="nc" id="L28">        assertTrue(&quot;Guess Button Exists&quot;, Gdx.files.internal(&quot;mini_games/guess_button.png&quot;).exists());</span>
+<span class="nc" id="L29">        assertTrue(&quot;Number Memoriser Label&quot;, Gdx.files.internal(&quot;mini_games/number_memoriser_label.png&quot;).exists());</span>
+<span class="nc" id="L30">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

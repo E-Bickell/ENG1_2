@@ -2,6 +2,7 @@
 
 import com.main.Main;
 import com.main.screens.MainGameScreen;
+import com.main.utils.ScoreUtils;
 import de.tomgrill.gdxtesting.GdxTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,49 +13,47 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(GdxTestRunner.class)
 
-<span class="nc" id="L15">public class streakTests {</span>
-<span class="nc" id="L16">    Main game = new Main();</span>
-<span class="nc" id="L17">    MainGameScreen gameScreen = new MainGameScreen(game);</span>
+<span class="nc" id="L16">public class streakTests {</span>
+
     @Test
-    public void GymRat(){
-<span class="nc" id="L20">        ArrayList&lt;String&gt; gyms=new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L21">        gyms.add(&quot;1&quot;);</span>
-<span class="nc" id="L22">        gyms.add(&quot;Gym_door&quot;);</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        for (int i=0;i&lt;10;i++){</span>
-<span class="nc" id="L24">            gameScreen.addRecTimes(gyms);;</span>
+    public void piazzaDor(){
+<span class="nc" id="L20">        ScoreUtils score = new ScoreUtils();</span>
+<span class="nc" id="L21">        ArrayList&lt;String&gt; gyms=new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L22">        gyms.add(&quot;1&quot;);</span>
+<span class="nc" id="L23">        gyms.add(&quot;Piazza_door&quot;);</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (int i=0;i&lt;10;i++){</span>
+<span class="nc" id="L25">            score.study(gyms);</span>
         }
-<span class="nc" id="L26">        gameScreen.setCurrentHour(24);</span>
-<span class="nc" id="L27">        gameScreen.setdayNum(7);</span>
-<span class="nc" id="L28">        assertTrue(gameScreen.inStreaks(&quot;Gym Rat&quot;));</span>
+<span class="nc" id="L27">        score.calculateFinalScore();</span>
+<span class="nc" id="L28">        assertTrue(&quot;streak size=&quot;+(score.getStudyTimes().size()),score.getStreaks().contains(&quot;The Pizza Building&quot;));</span>
 
 <span class="nc" id="L30">    }</span>
 
     @Test
-    public void PiazzaStreak(){
-<span class="nc" id="L34">        ArrayList&lt;String&gt; gyms=new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L35">        gyms.add(&quot;1&quot;);</span>
-<span class="nc" id="L36">        gyms.add(&quot;Piazza_door&quot;);</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        for (int i=0;i&lt;10;i++){</span>
-<span class="nc" id="L38">            gameScreen.addStudyTimes(gyms);</span>
+    public void GymRat(){
+<span class="nc" id="L34">        ScoreUtils score = new ScoreUtils();</span>
+<span class="nc" id="L35">        ArrayList&lt;String&gt; gyms=new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L36">        gyms.add(&quot;1&quot;);</span>
+<span class="nc" id="L37">        gyms.add(&quot;Gym_door&quot;);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for (int i=0;i&lt;10;i++){</span>
+<span class="nc" id="L39">            score.addRecActivtity(gyms);</span>
         }
-<span class="nc" id="L40">        gameScreen.setCurrentHour(24);</span>
-<span class="nc" id="L41">        gameScreen.setdayNum(7);</span>
-<span class="nc" id="L42">        assertTrue(gameScreen.inStreaks(&quot;The Pizza Building&quot;));</span>
+<span class="nc" id="L41">        score.calculateFinalScore();</span>
+<span class="nc" id="L42">        assertTrue(score.getStreaks().contains(&quot;Gym Rat&quot;));</span>
 
 <span class="nc" id="L44">    }</span>
-
     @Test
     public void CompSciStreak(){
+<span class="nc" id="L47">        ScoreUtils score = new ScoreUtils();</span>
 <span class="nc" id="L48">        ArrayList&lt;String&gt; gyms=new ArrayList&lt;String&gt;();</span>
 <span class="nc" id="L49">        gyms.add(&quot;1&quot;);</span>
 <span class="nc" id="L50">        gyms.add(&quot;Comp_sci_door&quot;);</span>
 <span class="nc bnc" id="L51" title="All 2 branches missed.">        for (int i=0;i&lt;10;i++){</span>
-<span class="nc" id="L52">            gameScreen.addStudyTimes(gyms);</span>
+<span class="nc" id="L52">            score.study(gyms);</span>
         }
-<span class="nc" id="L54">        gameScreen.setCurrentHour(24);</span>
-<span class="nc" id="L55">        gameScreen.setdayNum(7);</span>
-<span class="nc" id="L56">        assertTrue(gameScreen.inStreaks(&quot;Hi,I'm Pepper&quot;));</span>
+<span class="nc" id="L54">        score.calculateFinalScore();</span>
+<span class="nc" id="L55">        assertTrue(score.getStreaks().contains(&quot;Hi,I'm Pepper&quot;));</span>
 
-<span class="nc" id="L58">    }</span>
+<span class="nc" id="L57">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

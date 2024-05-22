@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TypingGameTests.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests</a> &gt; <a href="index.source.html" class="el_package">de.tomgrill.gdxtesting.utils</a> &gt; <span class="el_source">TypingGameTests.java</span></div><h1>TypingGameTests.java</h1><pre class="source lang-java linenums">package de.tomgrill.gdxtesting.utils;
+
+import com.main.utils.TypingGameUtils;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+<span class="nc" id="L8">public class TypingGameTests {</span>
+    @Test
+    public void noCorrect(){
+<span class="nc" id="L11">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="nc" id="L12">        typeUtils.generateNumber();</span>
+<span class="nc" id="L13">        typeUtils.setUserGuess(&quot;0&quot;);</span>
+<span class="nc" id="L14">        assertFalse(&quot;No correct guesses&quot;, typeUtils.validate());</span>
+<span class="nc" id="L15">    }</span>
+
+    @Test
+    public void oneCorrect(){
+<span class="nc" id="L19">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="nc" id="L20">        typeUtils.generateNumber();</span>
+<span class="nc" id="L21">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="nc" id="L22">        typeUtils.setUserGuess(userGuess);</span>
+<span class="nc" id="L23">        assertTrue(&quot;Correct Guess&quot;, typeUtils.validate());</span>
+<span class="nc" id="L24">    }</span>
+
+    @Test
+    public void multipleCorrect(){
+<span class="nc" id="L28">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L30">            typeUtils.generateNumber();</span>
+<span class="nc" id="L31">            String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="nc" id="L32">            typeUtils.setUserGuess(userGuess);</span>
+<span class="nc" id="L33">            typeUtils.validate();</span>
+<span class="nc" id="L34">            typeUtils.resetGame();</span>
+        }
+<span class="nc" id="L36">        assertEquals(typeUtils.getCorrect(), 3);</span>
+<span class="nc" id="L37">    }</span>
+
+    @Test
+    public void mixedCorrect(){
+<span class="nc" id="L41">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+
+<span class="nc" id="L43">        typeUtils.generateNumber();</span>
+<span class="nc" id="L44">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="nc" id="L45">        typeUtils.setUserGuess(userGuess);</span>
+<span class="nc" id="L46">        typeUtils.validate();</span>
+<span class="nc" id="L47">        typeUtils.resetGame();</span>
+
+<span class="nc" id="L49">        typeUtils.generateNumber();</span>
+<span class="nc" id="L50">        typeUtils.setUserGuess(&quot;0&quot;);</span>
+<span class="nc" id="L51">        typeUtils.validate();</span>
+
+<span class="nc" id="L53">        assertEquals(typeUtils.getCorrect(), 1);</span>
+<span class="nc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
