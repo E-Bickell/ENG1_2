@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.main.Main;
 import com.main.utils.ScreenType;
+import com.main.utils.TypingGameUtils;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,12 +22,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class TypingGame implements Screen, InputProcessor {
     private final Main game;
-    private final int studyDuration;
-    private int attempts = 0;
-    private int currentNumber = 0;
-    private int correct = 0;
     private final Texture guessButton;
-    private String userGuess = "";
+    private TypingGameUtils typeUtils;
     Boolean acceptInput = false, displayCorrect = false, displayWrong = false;
     BitmapFont displayText;
     private float displayTextY, displayTextHeight;
@@ -52,7 +49,7 @@ public class TypingGame implements Screen, InputProcessor {
         calculatePositions();
 
         Gdx.input.setInputProcessor(this);
-        this.studyDuration = studyDuration;
+        typeUtils = new TypingGameUtils(studyDuration);
 
         gameObjective = "Remember the number given and try to input the number from memory";
 
@@ -86,11 +83,11 @@ public class TypingGame implements Screen, InputProcessor {
      * Handles the logic for correct and incorrect guesses and progresses the game.
      */
     public void playGame() {
-        userGuess = "";
+        typeUtils.resetGame();
         displayWrong = false;
         displayCorrect = false;
-        if (attempts < studyDuration) {
-            currentNumber = generateNumber();
+        if (typeUtils.getAttempts() < typeUtils.getStudyDuration()) {
+            typeUtils.generateNumber();
             delay(5, this::makeUserGuess);
         } else {
             game.screenManager.setScreen(ScreenType.GAME_SCREEN);
@@ -132,32 +129,18 @@ public class TypingGame implements Screen, InputProcessor {
         game.batch.draw(title, titleX, titleY, titleWidth, titleHeight);
         displayText.draw(game.batch, gameObjective, 0, gameObjectiveY, game.screenWidth, Align.center, false);
         if (acceptInput) {
-            displayText.draw(game.batch, userGuess, 0, displayTextY, game.screenWidth, Align.center, false);
+            displayText.draw(game.batch, typeUtils.getUserGuess(), 0, displayTextY, game.screenWidth, Align.center, false);
             game.batch.draw(guessButton, guessButtonX, guessButtonY, guessButtonWidth, guessButtonHeight);
         } else if (displayCorrect) {
             displayText.draw(game.batch, "Correct well done.", 0, displayTextY, game.screenWidth, Align.center, false);
         } else if (displayWrong) {
-            displayText.draw(game.batch, "Incorrect. Answer: " + currentNumber, 0, displayTextY, game.screenWidth,
+            displayText.draw(game.batch, "Incorrect. Answer: " + typeUtils.getCurrentNumber(), 0, displayTextY, game.screenWidth,
                     Align.center, false);
         } else {
-            displayText.draw(game.batch, String.valueOf(currentNumber), 0, displayTextY, game.screenWidth, Align.center,
+            displayText.draw(game.batch, String.valueOf(typeUtils.getCurrentNumber()), 0, displayTextY, game.screenWidth, Align.center,
                     false);
         }
         game.batch.end();
-    }
-
-    /**
-     * Generates a random number for the player to memorize.
-     *
-     * @return The generated number.
-     */
-    public int generateNumber() {
-        int startingNumLength = 5;
-        int startingNum = (int) (10 * Math.pow(10, startingNumLength - 1));
-        int lowerLimit = (int) (startingNum * Math.pow(10, attempts - 1));
-        int num = ThreadLocalRandom.current().nextInt(lowerLimit, lowerLimit * 10 - 1);
-        attempts++;
-        return num;
     }
 
     public float getGuessButtonX() {return guessButtonX;}
@@ -204,11 +187,7 @@ public class TypingGame implements Screen, InputProcessor {
     @Override
     public boolean keyTyped(char character) {
         if (acceptInput) {
-            if (character == '\b' && !userGuess.isEmpty()) { // Handles backspace
-                userGuess = userGuess.substring(0, userGuess.length() - 1);
-            } else if (Character.isDigit(character) && userGuess.length() < String.valueOf(currentNumber).length()) {
-                userGuess += character;
-            }
+            typeUtils.adjustGuess(character);
         }
         return true;
     }
@@ -220,10 +199,9 @@ public class TypingGame implements Screen, InputProcessor {
         if (worldX >= guessButtonX && worldX <= guessButtonX + guessButtonWidth &&
                 worldY >= guessButtonY && worldY <= guessButtonY + guessButtonHeight) {
 
-            if (!userGuess.isEmpty()) {
+            if (!typeUtils.getUserGuess().isEmpty()) {
                 acceptInput = false;
-                if (Integer.parseInt(userGuess) == currentNumber) {
-                    correct = correct + 1;
+                if (typeUtils.validate()) {
                     displayCorrect = true;
                 } else {
                     displayWrong = true;
