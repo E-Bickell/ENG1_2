@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.tomgrill.gdxtesting.assets.ButtonsExist" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-05-22T21:06:02" hostname="LAPTOP-E8FM3GU7" time="0.085">
+  <properties/>
+  <testcase name="SettingsButtons" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.006"/>
+  <testcase name="ControlButtons" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.002"/>
+  <testcase name="AddToLeaderboardButtons" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.003"/>
+  <testcase name="MenuButtons" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.004"/>
+  <testcase name="FontExists" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.001"/>
+  <testcase name="LeaderboardButtons" classname="de.tomgrill.gdxtesting.assets.ButtonsExist" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

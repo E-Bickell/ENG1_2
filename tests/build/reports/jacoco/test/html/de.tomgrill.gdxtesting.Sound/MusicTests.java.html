@@ -9,20 +9,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(GdxTestRunner.class)
-<span class="nc" id="L12">public class MusicTests {</span>
-<span class="nc" id="L13">    GameMusic gameMusic = new GameMusic();</span>
+<span class="fc" id="L12">public class MusicTests {</span>
+<span class="fc" id="L13">    GameMusic gameMusic = new GameMusic();</span>
 
     @Test
     public void testMusicExists() {
-<span class="nc" id="L17">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/high_note.mp3&quot;).exists());</span>
+<span class="fc" id="L17">        assertTrue(&quot;This sound exists&quot;, Gdx.files.internal(&quot;sfx/high_note.mp3&quot;).exists());</span>
         //System.out.println(Gdx.files.internal(&quot;sfx/high_note.mp3&quot;));
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L19">    }</span>
     @Test
     public void testVolume() {
-<span class="nc" id="L22">        gameMusic.decrementVolume();</span>
-<span class="nc" id="L23">        gameMusic.decrementVolume();</span>
-<span class="nc" id="L24">        gameMusic.incrementVolume();</span>
-<span class="nc" id="L25">        assertEquals(3, gameMusic.getMusicLevel());</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L22">        gameMusic.decrementVolume();</span>
+<span class="fc" id="L23">        gameMusic.decrementVolume();</span>
+<span class="fc" id="L24">        gameMusic.incrementVolume();</span>
+<span class="fc" id="L25">        assertEquals(3, gameMusic.getMusicLevel());</span>
+<span class="fc" id="L26">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

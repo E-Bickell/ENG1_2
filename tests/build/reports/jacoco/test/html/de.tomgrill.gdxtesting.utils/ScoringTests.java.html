@@ -12,46 +12,46 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(GdxTestRunner.class)
 
-<span class="nc" id="L15">public class ScoringTests {</span>
+<span class="fc" id="L15">public class ScoringTests {</span>
 
     @Test
     public void testNoActions(){
-<span class="nc" id="L19">        ScoreUtils score = new ScoreUtils();</span>
-<span class="nc" id="L20">        assertEquals(score.calculateFinalScore(), 0);</span>
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L19">        ScoreUtils score = new ScoreUtils();</span>
+<span class="fc" id="L20">        assertEquals(score.calculateFinalScore(), 0);</span>
+<span class="fc" id="L21">    }</span>
     @Test
     public void testPerfect(){
-<span class="nc" id="L24">        ArrayList&lt;String&gt; studied = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L25">        ScoreUtils score = new ScoreUtils();</span>
-<span class="nc" id="L26">        studied.add(0,&quot;1&quot;);</span>
-<span class="nc" id="L27">        studied.add(1,&quot;0&quot;);</span>
-<span class="nc" id="L28">        score.study(studied);</span>
-<span class="nc" id="L29">        score.study(studied);</span>
-<span class="nc" id="L30">        score.study(studied);</span>
-<span class="nc" id="L31">        studied.add(1,&quot;1&quot;);</span>
-<span class="nc" id="L32">        ArrayList&lt;String&gt; eaten= new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L33">        eaten.add(0,&quot;1&quot;);</span>
-<span class="nc" id="L34">        eaten.add(1,&quot;0&quot;);</span>
-<span class="nc" id="L35">        score.eat(eaten);</span>
-<span class="nc" id="L36">        score.eat(eaten);</span>
-<span class="nc" id="L37">        score.eat(eaten);</span>
-<span class="nc" id="L38">        score.addRecActivtity(eaten);</span>
-<span class="nc" id="L39">        score.addRecActivtity(eaten);</span>
-<span class="nc" id="L40">        score.addRecActivtity(eaten);</span>
-<span class="nc" id="L41">        score.addRecActivtity(eaten);</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        for (int i=1;i&lt;8;i++){</span>
-<span class="nc" id="L43">            studied.add(0,Integer.toString(i));</span>
-<span class="nc" id="L44">            score.study(studied);</span>
-<span class="nc" id="L45">            eaten.add(0,Integer.toString(i));</span>
-<span class="nc" id="L46">            score.eat(eaten);</span>
-<span class="nc" id="L47">            score.eat(eaten);</span>
-<span class="nc" id="L48">            score.eat(eaten);</span>
-<span class="nc" id="L49">            score.addRecActivtity(eaten);</span>
+<span class="fc" id="L24">        ArrayList&lt;String&gt; studied = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L25">        ScoreUtils score = new ScoreUtils();</span>
+<span class="fc" id="L26">        studied.add(0,&quot;1&quot;);</span>
+<span class="fc" id="L27">        studied.add(1,&quot;0&quot;);</span>
+<span class="fc" id="L28">        score.study(studied);</span>
+<span class="fc" id="L29">        score.study(studied);</span>
+<span class="fc" id="L30">        score.study(studied);</span>
+<span class="fc" id="L31">        studied.add(1,&quot;1&quot;);</span>
+<span class="fc" id="L32">        ArrayList&lt;String&gt; eaten= new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L33">        eaten.add(0,&quot;1&quot;);</span>
+<span class="fc" id="L34">        eaten.add(1,&quot;0&quot;);</span>
+<span class="fc" id="L35">        score.eat(eaten);</span>
+<span class="fc" id="L36">        score.eat(eaten);</span>
+<span class="fc" id="L37">        score.eat(eaten);</span>
+<span class="fc" id="L38">        score.addRecActivtity(eaten);</span>
+<span class="fc" id="L39">        score.addRecActivtity(eaten);</span>
+<span class="fc" id="L40">        score.addRecActivtity(eaten);</span>
+<span class="fc" id="L41">        score.addRecActivtity(eaten);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (int i=1;i&lt;8;i++){</span>
+<span class="fc" id="L43">            studied.add(0,Integer.toString(i));</span>
+<span class="fc" id="L44">            score.study(studied);</span>
+<span class="fc" id="L45">            eaten.add(0,Integer.toString(i));</span>
+<span class="fc" id="L46">            score.eat(eaten);</span>
+<span class="fc" id="L47">            score.eat(eaten);</span>
+<span class="fc" id="L48">            score.eat(eaten);</span>
+<span class="fc" id="L49">            score.addRecActivtity(eaten);</span>
         }
     
-<span class="nc" id="L52">        assertEquals(&quot;added score = &quot;+Integer.toString(score.calculateFinalScore()),score.calculateFinalScore(),80);</span>
+<span class="fc" id="L52">        assertEquals(&quot;added score = &quot;+Integer.toString(score.calculateFinalScore()),score.calculateFinalScore(),80);</span>
   
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L54">    }</span>
 }
 
 

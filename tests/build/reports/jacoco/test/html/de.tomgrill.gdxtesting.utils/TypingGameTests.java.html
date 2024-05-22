@@ -5,52 +5,52 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-<span class="nc" id="L8">public class TypingGameTests {</span>
+<span class="fc" id="L8">public class TypingGameTests {</span>
     @Test
     public void noCorrect(){
-<span class="nc" id="L11">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
-<span class="nc" id="L12">        typeUtils.generateNumber();</span>
-<span class="nc" id="L13">        typeUtils.setUserGuess(&quot;0&quot;);</span>
-<span class="nc" id="L14">        assertFalse(&quot;No correct guesses&quot;, typeUtils.validate());</span>
-<span class="nc" id="L15">    }</span>
+<span class="fc" id="L11">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="fc" id="L12">        typeUtils.generateNumber();</span>
+<span class="fc" id="L13">        typeUtils.setUserGuess(&quot;0&quot;);</span>
+<span class="fc" id="L14">        assertFalse(&quot;No correct guesses&quot;, typeUtils.validate());</span>
+<span class="fc" id="L15">    }</span>
 
     @Test
     public void oneCorrect(){
-<span class="nc" id="L19">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
-<span class="nc" id="L20">        typeUtils.generateNumber();</span>
-<span class="nc" id="L21">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
-<span class="nc" id="L22">        typeUtils.setUserGuess(userGuess);</span>
-<span class="nc" id="L23">        assertTrue(&quot;Correct Guess&quot;, typeUtils.validate());</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L19">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="fc" id="L20">        typeUtils.generateNumber();</span>
+<span class="fc" id="L21">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="fc" id="L22">        typeUtils.setUserGuess(userGuess);</span>
+<span class="fc" id="L23">        assertTrue(&quot;Correct Guess&quot;, typeUtils.validate());</span>
+<span class="fc" id="L24">    }</span>
 
     @Test
     public void multipleCorrect(){
-<span class="nc" id="L28">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int i = 0; i &lt; 3; i++) {</span>
-<span class="nc" id="L30">            typeUtils.generateNumber();</span>
-<span class="nc" id="L31">            String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
-<span class="nc" id="L32">            typeUtils.setUserGuess(userGuess);</span>
-<span class="nc" id="L33">            typeUtils.validate();</span>
-<span class="nc" id="L34">            typeUtils.resetGame();</span>
+<span class="fc" id="L28">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (int i = 0; i &lt; 3; i++) {</span>
+<span class="fc" id="L30">            typeUtils.generateNumber();</span>
+<span class="fc" id="L31">            String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="fc" id="L32">            typeUtils.setUserGuess(userGuess);</span>
+<span class="fc" id="L33">            typeUtils.validate();</span>
+<span class="fc" id="L34">            typeUtils.resetGame();</span>
         }
-<span class="nc" id="L36">        assertEquals(typeUtils.getCorrect(), 3);</span>
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L36">        assertEquals(typeUtils.getCorrect(), 3);</span>
+<span class="fc" id="L37">    }</span>
 
     @Test
     public void mixedCorrect(){
-<span class="nc" id="L41">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
+<span class="fc" id="L41">        TypingGameUtils typeUtils = new TypingGameUtils(3);</span>
 
-<span class="nc" id="L43">        typeUtils.generateNumber();</span>
-<span class="nc" id="L44">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
-<span class="nc" id="L45">        typeUtils.setUserGuess(userGuess);</span>
-<span class="nc" id="L46">        typeUtils.validate();</span>
-<span class="nc" id="L47">        typeUtils.resetGame();</span>
+<span class="fc" id="L43">        typeUtils.generateNumber();</span>
+<span class="fc" id="L44">        String userGuess = String.valueOf(typeUtils.getCurrentNumber());</span>
+<span class="fc" id="L45">        typeUtils.setUserGuess(userGuess);</span>
+<span class="fc" id="L46">        typeUtils.validate();</span>
+<span class="fc" id="L47">        typeUtils.resetGame();</span>
 
-<span class="nc" id="L49">        typeUtils.generateNumber();</span>
-<span class="nc" id="L50">        typeUtils.setUserGuess(&quot;0&quot;);</span>
-<span class="nc" id="L51">        typeUtils.validate();</span>
+<span class="fc" id="L49">        typeUtils.generateNumber();</span>
+<span class="fc" id="L50">        typeUtils.setUserGuess(&quot;0&quot;);</span>
+<span class="fc" id="L51">        typeUtils.validate();</span>
 
-<span class="nc" id="L53">        assertEquals(typeUtils.getCorrect(), 1);</span>
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L53">        assertEquals(typeUtils.getCorrect(), 1);</span>
+<span class="fc" id="L54">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
